@@ -188,11 +188,11 @@
 
   <section>
     <h2>ฟังก์ชันตั้งต้นและการเลือกตัวแปรซ้ำ</h2>
-    <p>ความดันที่เพิ่มขึ้นของเครื่องสูบน้ำ $\Delta P$ ขึ้นอยู่กับอัตราการไหล $Q$, ขนาดเส้นผ่านศูนย์กลางใบพัด $D$, และคุณสมบัติของไหล ($ho, \mu$):</p>
-    $$\Delta P = f(Q,\ D,\ ho,\ \mu)$$
-    <p class="muted">นับตัวแปร: $k = 5$ ตัว ($\Delta P, Q, D, ho, \mu$), มิติพื้นฐาน: $r = 3$ ($M, L, T$) ดังนั้นจะได้กลุ่มไร้มิติ $\Pi = 5 - 3 = 2$ กลุ่ม</p>
+    <p>ความดันที่เพิ่มขึ้นของเครื่องสูบน้ำ $\Delta P$ ขึ้นอยู่กับอัตราการไหล $Q$, ขนาดเส้นผ่านศูนย์กลางใบพัด $D$, และคุณสมบัติของไหล ($\rho, \mu$):</p>
+    $$\Delta P = f(Q,\ D,\ \rho,\ \mu)$$
+    <p class="muted">นับตัวแปร: $k = 5$ ตัว ($\Delta P, Q, D, \rho, \mu$), มิติพื้นฐาน: $r = 3$ ($M, L, T$) ดังนั้นจะได้กลุ่มไร้มิติ $\Pi = 5 - 3 = 2$ กลุ่ม โดยเลือกตัวแปรซ้ำคือ $(D, \rho, \mu)$</p>
     <div class="formula">
-      $$\Pi_1 = rac{D^2 ho\,\Delta P}{\mu^2} \qquad\qquad \Pi_2 = rac{ho\,Q}{D\,\mu}$$
+      $$\Pi_1 = \frac{D^2 \rho\,\Delta P}{\mu^2} \qquad\qquad \Pi_2 = \frac{\rho\,Q}{D\,\mu}$$
     </div>
   </section>
 
@@ -200,11 +200,11 @@
     <h2>สูตรสำเร็จในการจับคู่ Model และ Prototype</h2>
     <p>เมื่อตั้ง $\Pi_m = \Pi_p$ จะได้สูตรสำเร็จที่ใช้ทำนายผลได้ทันที:</p>
     <ul class="tips">
-      <li><span class="lead">กรณีของไหลชนิดเดียวกัน (น้ำทั้งคู่):</span> $ho$ และ $\mu$ ตัดทอนกันหมด
-        $$Q_m = \left(rac{D_m}{D_p}ight) Q_p \qquad\qquad \Delta P_m = \left(rac{D_p}{D_m}ight)^2 \Delta P_p$$
+      <li><span class="lead">กรณีของไหลชนิดเดียวกัน (น้ำทั้งคู่):</span> $\rho$ และ $\mu$ ตัดทอนกันหมด
+        $$Q_m = \left(\frac{D_m}{D_p}\right) Q_p \qquad\qquad \Delta P_m = \left(\frac{D_p}{D_m}\right)^2 \Delta P_p$$
       </li>
       <li><span class="lead">กรณีของไหลต่างชนิดกัน:</span> ต้องแทนค่าความหนาแน่นและความหนืดครบทุกตัว
-        $$Q_m = Q_p \left(rac{D_m}{D_p}ight)\left(rac{ho_p}{ho_m}ight)\left(rac{\mu_m}{\mu_p}ight) \qquad\qquad \Delta P_m = \Delta P_p \left(rac{D_p}{D_m}ight)^2 \left(rac{ho_p}{ho_m}ight)\left(rac{\mu_m}{\mu_p}ight)^2$$
+        $$Q_m = Q_p \left(\frac{D_m}{D_p}\right)\left(\frac{\rho_p}{\rho_m}\right)\left(\frac{\mu_m}{\mu_p}\right) \qquad\qquad \Delta P_m = \Delta P_p \left(\frac{D_p}{D_m}\right)^2 \left(\frac{\rho_p}{\rho_m}\right)\left(\frac{\mu_m}{\mu_p}\right)^2$$
       </li>
     </ul>
   </section>
@@ -222,17 +222,17 @@
     <h2>โจทย์</h2>
     <blockquote class="th">
       <span class="tag">ตัวอย่างบทที่ 4 ข้อ 7</span>
-      การทดสอบ Prototype ของเครื่องสูบน้ำที่จะสูบน้ำด้วยอัตรา $1.5\ 	ext{m}^3/	ext{s}$ โดยส่วนที่เป็นใบพัดมีเส้นผ่านศูนย์กลางเท่ากับ $40\ 	ext{cm}$ และความดันเพิ่มขึ้น $400\ 	ext{kPa}$ โดยที่แบบจำลองมีใบพัดมีเส้นผ่านศูนย์กลางเท่ากับ $8\ 	ext{cm}$ จงหาอัตราการไหลและความดันที่เพิ่มขึ้นในแบบจำลอง กำหนดให้ของไหลที่ใช้ในแบบจำลองและ Prototype คือน้ำ
+      การทดสอบ Prototype ของเครื่องสูบน้ำที่จะสูบน้ำด้วยอัตรา $1.5\ \text{m}^3/\text{s}$ โดยส่วนที่เป็นใบพัดมีเส้นผ่านศูนย์กลางเท่ากับ $40\ \text{cm}$ และความดันเพิ่มขึ้น $400\ \text{kPa}$ โดยที่แบบจำลองมีใบพัดมีเส้นผ่านศูนย์กลางเท่ากับ $8\ \text{cm}$ จงหาอัตราการไหลและความดันที่เพิ่มขึ้นในแบบจำลอง กำหนดให้ของไหลที่ใช้ในแบบจำลองและ Prototype คือน้ำ
     </blockquote>
 
     <div class="tscroll">
     <table class="dims">
       <thead><tr><th>พารามิเตอร์</th><th>แบบจำลอง (Model)</th><th>Prototype</th></tr></thead>
       <tbody>
-        <tr><td class="q">$D$</td><td>$D_m = 8\ 	ext{cm} = 0.08\ 	ext{m}$</td><td>$D_p = 40\ 	ext{cm} = 0.40\ 	ext{m}$</td></tr>
-        <tr><td class="q">$Q$</td><td>$Q_m = ?$</td><td>$Q_p = 1.5\ 	ext{m}^3/	ext{s}$</td></tr>
-        <tr><td class="q">$\Delta P$</td><td>$\Delta P_m = ?$</td><td>$\Delta P_p = 400\ 	ext{kPa}$</td></tr>
-        <tr><td class="q">ของไหล</td><td>น้ำ ($ho_m = ho_p$)</td><td>น้ำ ($\mu_m = \mu_p$)</td></tr>
+        <tr><td class="q">$D$</td><td>$D_m = 8\ \text{cm} = 0.08\ \text{m}$</td><td>$D_p = 40\ \text{cm} = 0.40\ \text{m}$</td></tr>
+        <tr><td class="q">$Q$</td><td>$Q_m = ?$</td><td>$Q_p = 1.5\ \text{m}^3/\text{s}$</td></tr>
+        <tr><td class="q">$\Delta P$</td><td>$\Delta P_m = ?$</td><td>$\Delta P_p = 400\ \text{kPa}$</td></tr>
+        <tr><td class="q">ของไหล</td><td>น้ำ ($\rho_m = \rho_p$)</td><td>น้ำ ($\mu_m = \mu_p$)</td></tr>
       </tbody>
     </table>
     </div>
@@ -243,16 +243,16 @@
     <ol class="steps">
       <li>
         <h3>อัตราการไหล $Q_m$ จาก $\Pi_2$</h3>
-        $$rac{Q_m}{D_m} = rac{Q_p}{D_p} \implies Q_m = \left(rac{D_m}{D_p}ight) Q_p = \left(rac{0.08}{0.40}ight)(1.5) = \mathbf{0.30\ 	ext{m}^3/	ext{s}}$$
+        $$\frac{Q_m}{D_m} = \frac{Q_p}{D_p} \implies Q_m = \left(\frac{D_m}{D_p}\right) Q_p = \left(\frac{0.08}{0.40}\right)(1.5) = \mathbf{0.30\ \text{m}^3/\text{s}}$$
       </li>
       <li>
         <h3>ความดันเพิ่มขึ้น $\Delta P_m$ จาก $\Pi_1$</h3>
-        $$D_m^2\,\Delta P_m = D_p^2\,\Delta P_p \implies \Delta P_m = \left(rac{D_p}{D_m}ight)^2 \Delta P_p = \left(rac{0.40}{0.08}ight)^2 (400\ 	ext{kPa}) = 25 	imes 400 = \mathbf{10,000\ 	ext{kPa}}$$
+        $$D_m^2\,\Delta P_m = D_p^2\,\Delta P_p \implies \Delta P_m = \left(\frac{D_p}{D_m}\right)^2 \Delta P_p = \left(\frac{0.40}{0.08}\right)^2 (400\ \text{kPa}) = 25 \times 400 = \mathbf{10,000\ \text{kPa}}$$
       </li>
     </ol>
     <div class="final">
-      <div><p class="lbl">อัตราการไหลในแบบจำลอง</p>$$Q_m = 0.30\ 	ext{m}^3/	ext{s}$$</div>
-      <div><p class="lbl">ความดันที่เพิ่มขึ้นในแบบจำลอง</p>$$\Delta P_m = 10,000\ 	ext{kPa} = 10\ 	ext{MPa}$$</div>
+      <div><p class="lbl">อัตราการไหลในแบบจำลอง</p>$$Q_m = 0.30\ \text{m}^3/\text{s}$$</div>
+      <div><p class="lbl">ความดันที่เพิ่มขึ้นในแบบจำลอง</p>$$\Delta P_m = 10,000\ \text{kPa} = 10\ \text{MPa}$$</div>
     </div>
   </section>
   <div class="pager">
@@ -272,7 +272,7 @@
     <h2>โจทย์</h2>
     <blockquote class="th">
       <span class="tag">แบบฝึกหัดที่ 1</span>
-      การทดสอบเครื่องสูบน้ำ Prototype ซึ่งออกแบบมาให้สูบน้ำด้วยอัตราการไหล $2.0\ 	ext{m}^3/	ext{s}$ เส้นผ่านศูนย์กลางใบพัด $50\ 	ext{cm}$ และสร้างความดันเพิ่มขึ้น $500\ 	ext{kPa}$ วิศวกรต้องการสร้างแบบจำลอง (Model) ที่มีขนาดเส้นผ่านศูนย์กลางใบพัด $10\ 	ext{cm}$ โดยใช้น้ำในการทดสอบเช่นเดียวกัน จงหาอัตราการไหล ($Q_m$) และความดันที่เพิ่มขึ้น ($\Delta P_m$) ในแบบจำลอง
+      การทดสอบเครื่องสูบน้ำ Prototype ซึ่งออกแบบมาให้สูบน้ำด้วยอัตราการไหล $2.0\ \text{m}^3/\text{s}$ เส้นผ่านศูนย์กลางใบพัด $50\ \text{cm}$ และสร้างความดันเพิ่มขึ้น $500\ \text{kPa}$ วิศวกรต้องการสร้างแบบจำลอง (Model) ที่มีขนาดเส้นผ่านศูนย์กลางใบพัด $10\ \text{cm}$ โดยใช้น้ำในการทดสอบเช่นเดียวกัน จงหาอัตราการไหล ($Q_m$) และความดันที่เพิ่มขึ้น ($\Delta P_m$) ในแบบจำลอง
     </blockquote>
 
     <div class="practice-card">
@@ -292,20 +292,20 @@
       <ol class="steps">
         <li>
           <h3>อัตราส่วนขนาดเส้นผ่านศูนย์กลาง</h3>
-          $$rac{D_m}{D_p} = rac{10\ 	ext{cm}}{50\ 	ext{cm}} = rac{0.10\ 	ext{m}}{0.50\ 	ext{m}} = rac{1}{5} = 0.20$$
+          $$\frac{D_m}{D_p} = \frac{10\ \text{cm}}{50\ \text{cm}} = \frac{0.10\ \text{m}}{0.50\ \text{m}} = \frac{1}{5} = 0.20$$
         </li>
         <li>
-          <h3>หา $Q_m$ จาก $\Pi_2 = \dfrac{ho Q}{D \mu}$</h3>
-          $$Q_m = \left(rac{D_m}{D_p}ight) Q_p = (0.20)(2.0\ 	ext{m}^3/	ext{s}) = \mathbf{0.40\ 	ext{m}^3/	ext{s}}$$
+          <h3>หา $Q_m$ จาก $\Pi_2 = \dfrac{\rho Q}{D \mu}$</h3>
+          $$Q_m = \left(\frac{D_m}{D_p}\right) Q_p = (0.20)(2.0\ \text{m}^3/\text{s}) = \mathbf{0.40\ \text{m}^3/\text{s}}$$
         </li>
         <li>
-          <h3>หา $\Delta P_m$ จาก $\Pi_1 = \dfrac{D^2 ho \Delta P}{\mu^2}$</h3>
-          $$\Delta P_m = \left(rac{D_p}{D_m}ight)^2 \Delta P_p = (5)^2 	imes (500\ 	ext{kPa}) = 25 	imes 500 = \mathbf{12,500\ 	ext{kPa}} = \mathbf{12.50\ 	ext{MPa}}$$
+          <h3>หา $\Delta P_m$ จาก $\Pi_1 = \dfrac{D^2 \rho \Delta P}{\mu^2}$</h3>
+          $$\Delta P_m = \left(\frac{D_p}{D_m}\right)^2 \Delta P_p = (5)^2 \times (500\ \text{kPa}) = 25 \times 500 = \mathbf{12,500\ \text{kPa}} = \mathbf{12.50\ \text{MPa}}$$
         </li>
       </ol>
       <div class="final">
-        <div><p class="lbl">อัตราการไหล $Q_m$</p>$$0.40\ 	ext{m}^3/	ext{s}$$</div>
-        <div><p class="lbl">ความดัน $\Delta P_m$</p>$$12,500\ 	ext{kPa} = 12.5\ 	ext{MPa}$$</div>
+        <div><p class="lbl">อัตราการไหล $Q_m$</p>$$0.40\ \text{m}^3/\text{s}$$</div>
+        <div><p class="lbl">ความดัน $\Delta P_m$</p>$$12,500\ \text{kPa} = 12.5\ \text{MPa}$$</div>
       </div>
     </div>
   </section>
@@ -318,7 +318,7 @@
 <!-- ========================= PANEL 4: ข้อสอบเสมือน 2 ========================= -->
 <article class="panel" id="p2-midterm">
   <div class="parthead">
-    <h2 class="part-title">4. ข้อสอบเสมือน 2: ทิศทางย้อนกลับ Lab $ightarrow$ Prototype (ระดับ Midterm)</h2>
+    <h2 class="part-title">4. ข้อสอบเสมือน 2: ทิศทางย้อนกลับ Lab $\rightarrow$ Prototype (ระดับ Midterm)</h2>
     <p class="lede">โจทย์สไตล์ข้อสอบมิดเทอมที่วัดผลการทดสอบในห้องแลป แล้วให้ทำนายพฤติกรรมของเครื่องสูบน้ำจริง</p>
   </div>
 
@@ -326,7 +326,7 @@
     <h2>โจทย์</h2>
     <blockquote class="th">
       <span class="tag">แบบฝึกหัดที่ 2</span>
-      ในห้องปฏิบัติการ วิศวกรทำการทดสอบแบบจำลองเครื่องสูบน้ำขนาดเล็กที่มีเส้นผ่านศูนย์กลางใบพัด $D_m = 12\ 	ext{cm}$ โดยใช้น้ำในการทดสอบ วัดอัตราการไหลได้ $Q_m = 0.45\ 	ext{m}^3/	ext{s}$ และความดันเพิ่มขึ้น $\Delta P_m = 6,400\ 	ext{kPa}$ จงทำนายอัตราการไหล ($Q_p$) และความดันที่เพิ่มขึ้น ($\Delta P_p$) ของเครื่องสูบน้ำ Prototype ของจริงที่มีขนาดเส้นผ่านศูนย์กลางใบพัด $D_p = 48\ 	ext{cm}$ เมื่อใช้งานกับน้ำเช่นเดียวกัน
+      ในห้องปฏิบัติการ วิศวกรทำการทดสอบแบบจำลองเครื่องสูบน้ำขนาดเล็กที่มีเส้นผ่านศูนย์กลางใบพัด $D_m = 12\ \text{cm}$ โดยใช้น้ำในการทดสอบ วัดอัตราการไหลได้ $Q_m = 0.45\ \text{m}^3/\text{s}$ และความดันเพิ่มขึ้น $\Delta P_m = 6,400\ \text{kPa}$ จงทำนายอัตราการไหล ($Q_p$) และความดันที่เพิ่มขึ้น ($\Delta P_p$) ของเครื่องสูบน้ำ Prototype ของจริงที่มีขนาดเส้นผ่านศูนย์กลางใบพัด $D_p = 48\ \text{cm}$ เมื่อใช้งานกับน้ำเช่นเดียวกัน
     </blockquote>
 
     <div class="practice-card">
@@ -346,20 +346,20 @@
       <ol class="steps">
         <li>
           <h3>อัตราส่วนขยายขนาด (Scale Ratio)</h3>
-          $$\lambda = rac{D_p}{D_m} = rac{48\ 	ext{cm}}{12\ 	ext{cm}} = rac{0.48\ 	ext{m}}{0.12\ 	ext{m}} = 4.0$$
+          $$\lambda = \frac{D_p}{D_m} = \frac{48\ \text{cm}}{12\ \text{cm}} = \frac{0.48\ \text{m}}{0.12\ \text{m}} = 4.0$$
         </li>
         <li>
           <h3>ทำนายอัตราการไหล $Q_p$</h3>
-          $$Q_p = \left(rac{D_p}{D_m}ight) Q_m = (4.0)(0.45\ 	ext{m}^3/	ext{s}) = \mathbf{1.80\ 	ext{m}^3/	ext{s}}$$
+          $$Q_p = \left(\frac{D_p}{D_m}\right) Q_m = (4.0)(0.45\ \text{m}^3/\text{s}) = \mathbf{1.80\ \text{m}^3/\text{s}}$$
         </li>
         <li>
           <h3>ทำนายความดันเพิ่มขึ้น $\Delta P_p$</h3>
-          $$\Delta P_p = \left(rac{D_m}{D_p}ight)^2 \Delta P_m = \left(rac{1}{4.0}ight)^2 (6,400\ 	ext{kPa}) = rac{6,400}{16} = \mathbf{400\ 	ext{kPa}}$$
+          $$\Delta P_p = \left(\frac{D_m}{D_p}\right)^2 \Delta P_m = \left(\frac{1}{4.0}\right)^2 (6,400\ \text{kPa}) = \frac{6,400}{16} = \mathbf{400\ \text{kPa}}$$
         </li>
       </ol>
       <div class="final">
-        <div><p class="lbl">อัตราการไหล $Q_p$</p>$$1.80\ 	ext{m}^3/	ext{s}$$</div>
-        <div><p class="lbl">ความดัน $\Delta P_p$</p>$$400\ 	ext{kPa}$$</div>
+        <div><p class="lbl">อัตราการไหล $Q_p$</p>$$1.80\ \text{m}^3/\text{s}$$</div>
+        <div><p class="lbl">ความดัน $\Delta P_p$</p>$$400\ \text{kPa}$$</div>
       </div>
     </div>
   </section>
@@ -372,7 +372,7 @@
 <!-- ========================= PANEL 5: ข้อสอบเสมือน 3 ========================= -->
 <article class="panel" id="p3-mastery">
   <div class="parthead">
-    <h2 class="part-title">5. ข้อสอบเสมือน 3: ของไหลต่างชนิด น้ำมัน $ightarrow$ น้ำ (ระดับ Mastery)</h2>
+    <h2 class="part-title">5. ข้อสอบเสมือน 3: ของไหลต่างชนิด น้ำมัน $\rightarrow$ น้ำ (ระดับ Mastery)</h2>
     <p class="lede">ระดับท้าทายสูงสุด: เมื่อของไหลของแบบจำลองไม่ใช่ของไหลชนิดเดียวกับ Prototype</p>
   </div>
 
@@ -380,7 +380,7 @@
     <h2>โจทย์</h2>
     <blockquote class="th">
       <span class="tag">แบบฝึกหัดที่ 3</span>
-      การทดสอบแบบจำลองเครื่องสูบน้ำขนาดใบพัด $D_m = 6\ 	ext{cm}$ โดยใช้สารหล่อลื่นพิเศษ ($ho_m = 800\ 	ext{kg/m}^3, \mu_m = 1.20 	imes 10^{-3}\ 	ext{Pa}\cdot	ext{s}$) เพื่อจำลองเครื่องสูบน้ำจริง (Prototype) สูบน้ำ ($ho_p = 1,000\ 	ext{kg/m}^3, \mu_p = 1.00 	imes 10^{-3}\ 	ext{Pa}\cdot	ext{s}$) ขนาด $D_p = 30\ 	ext{cm}$ ทำงานที่ $Q_p = 1.25\ 	ext{m}^3/	ext{s}$ และ $\Delta P_p = 360\ 	ext{kPa}$ จงหาอัตราการไหล ($Q_m$) และความดันที่เพิ่มขึ้น ($\Delta P_m$) ในแบบจำลอง
+      การทดสอบแบบจำลองเครื่องสูบน้ำขนาดใบพัด $D_m = 6\ \text{cm}$ โดยใช้สารหล่อลื่นพิเศษ ($\rho_m = 800\ \text{kg/m}^3, \mu_m = 1.20 \times 10^{-3}\ \text{Pa}\cdot\text{s}$) เพื่อจำลองเครื่องสูบน้ำจริง (Prototype) สูบน้ำ ($\rho_p = 1,000\ \text{kg/m}^3, \mu_p = 1.00 \times 10^{-3}\ \text{Pa}\cdot\text{s}$) ขนาด $D_p = 30\ \text{cm}$ ทำงานที่ $Q_p = 1.25\ \text{m}^3/\text{s}$ และ $\Delta P_p = 360\ \text{kPa}$ จงหาอัตราการไหล ($Q_m$) และความดันที่เพิ่มขึ้น ($\Delta P_m$) ในแบบจำลอง
     </blockquote>
 
     <div class="practice-card">
@@ -399,19 +399,19 @@
     <div id="sol3" style="display:none; margin-top:1.5rem;">
       <ol class="steps">
         <li>
-          <h3>หา $Q_m$ (ค่า $ho$ และ $\mu$ ไม่ตัดกัน)</h3>
-          $$Q_m = Q_p \left(rac{D_m}{D_p}ight) \left(rac{ho_p}{ho_m}ight) \left(rac{\mu_m}{\mu_p}ight)$$
-          $$Q_m = (1.25) 	imes \left(rac{0.06}{0.30}ight) 	imes \left(rac{1,000}{800}ight) 	imes \left(rac{1.20 	imes 10^{-3}}{1.00 	imes 10^{-3}}ight) = \mathbf{0.375\ 	ext{m}^3/	ext{s}}$$
+          <h3>หา $Q_m$ (ค่า $\rho$ และ $\mu$ ไม่ตัดกัน)</h3>
+          $$Q_m = Q_p \left(\frac{D_m}{D_p}\right) \left(\frac{\rho_p}{\rho_m}\right) \left(\frac{\mu_m}{\mu_p}\right)$$
+          $$Q_m = (1.25) \times \left(\frac{0.06}{0.30}\right) \times \left(\frac{1,000}{800}\right) \times \left(\frac{1.20 \times 10^{-3}}{1.00 \times 10^{-3}}\right) = \mathbf{0.375\ \text{m}^3/\text{s}}$$
         </li>
         <li>
           <h3>หา $\Delta P_m$</h3>
-          $$\Delta P_m = \Delta P_p \left(rac{D_p}{D_m}ight)^2 \left(rac{ho_p}{ho_m}ight) \left(rac{\mu_m}{\mu_p}ight)^2$$
-          $$\Delta P_m = (360) 	imes (5)^2 	imes (1.25) 	imes (1.20)^2 = 360 	imes 25 	imes 1.25 	imes 1.44 = \mathbf{16,200\ 	ext{kPa}} = \mathbf{16.20\ 	ext{MPa}}$$
+          $$\Delta P_m = \Delta P_p \left(\frac{D_p}{D_m}\right)^2 \left(\frac{\rho_p}{\rho_m}\right) \left(\frac{\mu_m}{\mu_p}\right)^2$$
+          $$\Delta P_m = (360) \times (5)^2 \times (1.25) \times (1.20)^2 = 360 \times 25 \times 1.25 \times 1.44 = \mathbf{16,200\ \text{kPa}} = \mathbf{16.20\ \text{MPa}}$$
         </li>
       </ol>
       <div class="final">
-        <div><p class="lbl">อัตราการไหล $Q_m$</p>$$0.375\ 	ext{m}^3/	ext{s}$$</div>
-        <div><p class="lbl">ความดัน $\Delta P_m$</p>$$16,200\ 	ext{kPa} = 16.20\ 	ext{MPa}$$</div>
+        <div><p class="lbl">อัตราการไหล $Q_m$</p>$$0.375\ \text{m}^3/\text{s}$$</div>
+        <div><p class="lbl">ความดัน $\Delta P_m$</p>$$16,200\ \text{kPa} = 16.20\ \text{MPa}$$</div>
       </div>
     </div>
   </section>
@@ -432,15 +432,15 @@
     <h2>3 ข้อผิดพลาดยอดฮิต</h2>
     <ul class="tips">
       <li class="warn"><span class="lead">1. ทิศทางของอัตราส่วนขนาด $D$:</span> สำหรับ $Q$ อัตราส่วนคือ $(D_m/D_p)^1$ (แบบจำลองเล็กกว่า $Q$ ต้องน้อยกว่า) แต่สำหรับ $\Delta P$ อัตราส่วนคือ $(D_p/D_m)^2$ (แบบจำลองเล็กกว่า ความดันกลับพุ่งสูงขึ้นเป็นกำลังสอง) ให้ตั้งสมการและย้ายข้างเสมอ อย่าเดาในใจ</li>
-      <li class="warn"><span class="lead">2. ที่มาของมิติ $P$ และ $\mu$:</span> ในกระดาษคำตอบ ขั้นตอนที่ 2 ต้องแสดงที่มา $P = F/A = ML^{-1}T^{-2}$ และ $	au = \mu(du/dy) \implies \mu = ML^{-1}T^{-1}$ เสมอ เพราะอาจารย์มีช่องให้คะแนนเฉพาะตรงนี้</li>
-      <li><span class="lead">3. ตัวแปรซ้ำต้องเป็นชุดเดิม:</span> ทุกกลุ่ม $\Pi$ ต้องใช้ $(D, ho, \mu)$ ชุดเดียวกัน ห้ามสลับตัวแปรซ้ำไปมาระหว่างข้อ</li>
+      <li class="warn"><span class="lead">2. ที่มาของมิติ $P$ และ $\mu$:</span> ในกระดาษคำตอบ ขั้นตอนที่ 2 ต้องแสดงที่มา $P = F/A = ML^{-1}T^{-2}$ และ $\tau = \mu(du/dy) \implies \mu = ML^{-1}T^{-1}$ เสมอ เพราะอาจารย์มีช่องให้คะแนนเฉพาะตรงนี้</li>
+      <li><span class="lead">3. ตัวแปรซ้ำต้องเป็นชุดเดิม:</span> ทุกกลุ่ม $\Pi$ ต้องใช้ $(D, \rho, \mu)$ ชุดเดียวกัน ห้ามสลับตัวแปรซ้ำไปมาระหว่างข้อ</li>
     </ul>
   </section>
 
   <section>
     <h2>สูตรโกงตรวจคำตอบด้วย Reynolds Number ($Re$)</h2>
     <p>เนื่องจาก $\Pi_2 \propto Re$ ดังนั้นเมื่อทำเสร็จ ให้ลองตรวจดูว่า $Re_m = Re_p$ หรือไม่:</p>
-    $$Re = rac{4 ho Q}{\pi D \mu}$$
+    $$Re = \frac{4 \rho Q}{\pi D \mu}$$
     <p class="muted">ถ้าค่า $Re$ ทั้งสองฝั่งเท่ากัน แสดงว่าตัวเลขที่คุณคำนวณมานั้นถูกต้องแม่นยำ 100% แน่นอน!</p>
   </section>
   <div class="pager"><a class="prev" href="#p3-mastery"><small>← ก่อนหน้า</small>5. แบบฝึก 3 (Mastery)</a></div>
