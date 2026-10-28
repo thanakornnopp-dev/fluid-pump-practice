@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="th" data-theme="dark">
+<head>
+<script>document.documentElement.classList.add('js')</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Fluid Mechanics: Pump Similitude Master Guide (แนวข้อ 7) | Thanaporn Nopparat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600&family=Noto+Serif+Thai:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<style>
+  :root {
+    color-scheme: dark;
+    --bg:      oklch(0.165 0.022 262);
+    --surface: oklch(0.205 0.026 262);
+    --surface-hover: oklch(0.24 0.03 262);
+    --line:    oklch(0.32 0.03 262);
+    --text:    oklch(0.93 0.012 262);
+    --muted:   oklch(0.76 0.025 262);
+    --amber:   oklch(0.83 0.125 78);
+    --emerald: oklch(0.82 0.145 150);
+    --rose:    oklch(0.78 0.12 20);
+    --serif: "Noto Serif Thai", Georgia, serif;
+    --sans:  "Noto Sans Thai", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--bg); -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 400 1.0625rem/1.85 var(--sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--amber); color: oklch(0.2 0.03 78); }
+  * { scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+
+  main { max-width: 48rem; margin: 0 auto; padding: clamp(1.8rem, 5vw, 4rem) 1.25rem 6rem; }
+  header { margin-bottom: 2rem; animation: rise 0.8s var(--ease) both; }
+  @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { header { animation: none; } }
+
+  .badge-owner {
+    display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; font-weight: 500;
+    color: var(--amber); background: oklch(0.25 0.04 78); padding: 0.25rem 0.75rem; border-radius: 999px;
+    margin-bottom: 0.8rem;
+  }
+  h1.top { font-family: var(--serif); font-weight: 600; font-size: clamp(1.8rem, 4vw, 2.4rem); line-height: 1.3; margin: 0 0 0.6rem; text-wrap: balance; }
+  .lede { color: var(--muted); max-width: 62ch; margin: 0; font-size: 1.05rem; }
+
+  nav.tabs {
+    position: sticky; top: 0; z-index: 10; background: var(--bg);
+    display: flex; gap: 0.45rem; overflow-x: auto; padding: 0.75rem 0;
+    border-bottom: 1px solid var(--line); margin: 1.5rem 0 2.2rem;
+  }
+  nav.tabs a {
+    flex: 0 0 auto; text-decoration: none; color: var(--muted); font-weight: 500; font-size: 0.95rem;
+    padding: 0.5rem 1.05rem; border-radius: 999px; border: 1px solid var(--line); white-space: nowrap;
+    transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+  }
+  nav.tabs a:hover { color: var(--text); border-color: var(--muted); }
+  nav.tabs a.on { background: var(--amber); color: oklch(0.2 0.03 78); border-color: var(--amber); font-weight: 600; }
+  nav.tabs a:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+
+  article.panel { display: block; }
+  article.panel[hidden] { display: none; }
+
+  .parthead { margin-bottom: 1.8rem; }
+  h2.part-title { font-family: var(--serif); font-weight: 600; font-size: 1.85rem; line-height: 1.35; margin: 0 0 0.5rem; color: var(--text); }
+  section { scroll-margin-top: 4.5rem; margin-top: 2.4rem; }
+  h2 { font-family: var(--serif); font-weight: 600; font-size: 1.45rem; line-height: 1.4; margin: 0 0 0.85rem; }
+  p { margin: 0 0 1rem; max-width: 68ch; }
+  b, strong { font-weight: 600; }
+  .muted { color: var(--muted); }
+  .hl { color: var(--amber); font-weight: 600; }
+
+  blockquote.th {
+    margin: 0 0 1.25rem; padding: 0.3rem 0 0.3rem 1.15rem; border-left: 3px solid var(--amber);
+    color: var(--muted); max-width: 68ch; line-height: 1.8;
+  }
+  blockquote.th .tag { display: block; font: 600 0.82rem/1 var(--sans); letter-spacing: 0.06em; color: var(--amber); margin-bottom: 0.45rem; }
+
+  .formula {
+    background: var(--surface); border-radius: 14px; padding: 0.6rem 1.25rem 0.9rem;
+    border: 1px solid var(--line); overflow-x: auto; margin: 0.8rem 0;
+  }
+  .katex-display { overflow-x: auto; overflow-y: hidden; padding: 0.25rem 0; margin: 0.8em 0; }
+  .katex { font-size: 1.08em; color: var(--text); }
+
+  table.dims { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
+  table.dims th, table.dims td { text-align: left; padding: 0.65rem 0.85rem; border-top: 1px solid var(--line); vertical-align: top; }
+  table.dims th { font-weight: 600; font-size: 0.88rem; color: var(--muted); border-top: 0; }
+  table.dims td.q { color: var(--amber); font-weight: 600; white-space: nowrap; }
+  table.dims tr:last-child td { border-bottom: 1px solid var(--line); }
+  .tscroll { overflow-x: auto; margin-bottom: 1rem; }
+
+  ol.steps { list-style: none; counter-reset: s; margin: 0; padding: 0; }
+  ol.steps > li { counter-increment: s; position: relative; padding: 1.2rem 0 1.2rem 3rem; border-top: 1px solid var(--line); }
+  ol.steps > li:last-child { border-bottom: 1px solid var(--line); }
+  ol.steps > li::before { content: counter(s); position: absolute; left: 0; top: 1rem; font: 600 1.7rem/1.3 var(--serif); color: var(--amber); }
+  ol.steps h3 { font: 600 1.05rem/1.6 var(--sans); margin: 0 0 0.3rem; }
+  ol.steps p { color: var(--muted); margin-bottom: 0.5rem; }
+  ol.steps p .katex { color: var(--text); }
+  ol.steps .katex-display { margin: 0.5rem 0 0.2rem; text-align: left; }
+  ol.steps .katex-display > .katex { text-align: left; }
+
+  .final {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 1px;
+    background: var(--line); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; margin-top: 0.8rem;
+  }
+  .final > div { background: var(--surface); padding: 1rem 1.15rem 0.7rem; }
+  .final .lbl { color: var(--muted); font-size: 0.88rem; margin: 0 0 0.15rem; }
+  .final .katex-display { margin: 0.35em 0; text-align: left; }
+  .final .katex-display > .katex { text-align: left; color: var(--amber); font-size: 1.22em; }
+
+  ul.tips { list-style: none; padding: 0; margin: 0; }
+  ul.tips li { padding: 0.75rem 0 0.75rem 1.4rem; position: relative; max-width: 66ch; }
+  ul.tips li::before { content: ""; position: absolute; left: 0.2rem; top: 1.45rem; width: 6px; height: 6px; border-radius: 50%; background: var(--amber); }
+  ul.tips li.warn::before { background: var(--rose); }
+  ul.tips .lead { font-weight: 600; }
+
+  /* Interactive cards */
+  .practice-card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+    padding: 1.25rem 1.4rem; margin: 1.4rem 0;
+  }
+  .practice-badge {
+    display: inline-block; font-size: 0.8rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.05em; padding: 0.22rem 0.65rem; border-radius: 999px;
+    background: oklch(0.28 0.04 78); color: var(--amber); margin-bottom: 0.75rem;
+  }
+  .toggle-btn {
+    font: 500 0.92rem/1 var(--sans); color: var(--amber); background: transparent;
+    cursor: pointer; border: 1px solid var(--amber); border-radius: 8px;
+    padding: 0.55rem 0.95rem; margin: 0.5rem 0; display: inline-flex; align-items: center; gap: 0.4rem;
+    transition: color 0.2s var(--ease), background 0.2s var(--ease), border-color 0.2s var(--ease);
+  }
+  .toggle-btn:hover { background: var(--amber); color: oklch(0.2 0.03 78); }
+  .answer-input-group {
+    display: flex; flex-wrap: wrap; gap: 0.8rem; align-items: center; margin: 0.8rem 0;
+    padding: 0.85rem 1rem; background: oklch(0.18 0.02 262); border-radius: 12px; border: 1px solid var(--line);
+  }
+  .answer-input-group label { font-size: 0.92rem; color: var(--muted); }
+  .answer-input-group input {
+    background: var(--bg); border: 1px solid var(--line); color: var(--text);
+    padding: 0.45rem 0.75rem; border-radius: 8px; font-size: 0.95rem; width: 8.5rem;
+  }
+  .answer-input-group input:focus { outline: none; border-color: var(--amber); }
+  .check-res { font-size: 0.92rem; font-weight: 600; margin-left: 0.5rem; }
+  .check-res.correct { color: var(--emerald); }
+  .check-res.wrong { color: var(--rose); }
+
+  .pager { display: flex; justify-content: space-between; gap: 1rem; margin-top: 3.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+  .pager a { color: var(--text); text-decoration: none; border: 1px solid var(--line); border-radius: 14px; padding: 0.75rem 1.1rem; max-width: 48%; }
+  .pager a:hover { border-color: var(--amber); }
+  .pager a small { display: block; color: var(--muted); font-size: 0.8rem; }
+  .pager a.next { margin-left: auto; text-align: right; }
+  @media (max-width: 520px) { .pager { flex-direction: column; } .pager a { max-width: none; } }
+</style>
+</head>
+<body>
+<main>
+<header>
+  <div class="badge-owner">Engineering Study Portal · TU</div>
+  <h1 class="top">Fluid Mechanics: Pump Similitude Master Guide</h1>
+  <p class="lede">คู่มือทบทวนและคลังข้อสอบเสมือนจริงเจาะลึก <strong>แนวข้อ 7 (แบบจำลองเครื่องสูบน้ำและความคล้ายคลึง)</strong> โดย ฐนกร นพรัตน์ คณะวิศวกรรมศาสตร์</p>
+</header>
+
+<nav class="tabs" aria-label="เลือกหัวข้อ">
+  <a href="#theory">1. สรุปทฤษฎี & สูตรลัด</a>
+  <a href="#p7-original">2. ข้อ 7 ต้นฉบับ</a>
+  <a href="#p1-warmup">3. แบบฝึก 1 (Warm-up)</a>
+  <a href="#p2-midterm">4. แบบฝึก 2 (Midterm)</a>
+  <a href="#p3-mastery">5. แบบฝึก 3 (Mastery)</a>
+  <a href="#traps">6. จุดดักคะแนนสอบ</a>
+</nav>
+
+<!-- ========================= PANEL 1: สรุปทฤษฎี ========================= -->
+<article class="panel" id="theory">
+  <div class="parthead">
+    <h2 class="part-title">1. สรุปมโนทัศน์ & สูตรลัดใน 1 นาที</h2>
+    <p class="lede">แก่นของโจทย์เครื่องสูบน้ำแบบหมุนเหวี่ยงตามทฤษฎีบทบัคกิ้งแฮม พาย (Buckingham $\Pi$ Theorem)</p>
+  </div>
+
+  <section>
+    <h2>ฟังก์ชันตั้งต้นและการเลือกตัวแปรซ้ำ</h2>
+    <p>ความดันที่เพิ่มขึ้นของเครื่องสูบน้ำ $\Delta P$ ขึ้นอยู่กับอัตราการไหล $Q$, ขนาดเส้นผ่านศูนย์กลางใบพัด $D$, และคุณสมบัติของไหล ($ho, \mu$):</p>
+    $$\Delta P = f(Q,\ D,\ ho,\ \mu)$$
+    <p class="muted">นับตัวแปร: $k = 5$ ตัว ($\Delta P, Q, D, ho, \mu$), มิติพื้นฐาน: $r = 3$ ($M, L, T$) ดังนั้นจะได้กลุ่มไร้มิติ $\Pi = 5 - 3 = 2$ กลุ่ม</p>
+    <div class="formula">
+      $$\Pi_1 = rac{D^2 ho\,\Delta P}{\mu^2} \qquad\qquad \Pi_2 = rac{ho\,Q}{D\,\mu}$$
+    </div>
+  </section>
+
+  <section>
+    <h2>สูตรสำเร็จในการจับคู่ Model และ Prototype</h2>
+    <p>เมื่อตั้ง $\Pi_m = \Pi_p$ จะได้สูตรสำเร็จที่ใช้ทำนายผลได้ทันที:</p>
+    <ul class="tips">
+      <li><span class="lead">กรณีของไหลชนิดเดียวกัน (น้ำทั้งคู่):</span> $ho$ และ $\mu$ ตัดทอนกันหมด
+        $$Q_m = \left(rac{D_m}{D_p}ight) Q_p \qquad\qquad \Delta P_m = \left(rac{D_p}{D_m}ight)^2 \Delta P_p$$
+      </li>
+      <li><span class="lead">กรณีของไหลต่างชนิดกัน:</span> ต้องแทนค่าความหนาแน่นและความหนืดครบทุกตัว
+        $$Q_m = Q_p \left(rac{D_m}{D_p}ight)\left(rac{ho_p}{ho_m}ight)\left(rac{\mu_m}{\mu_p}ight) \qquad\qquad \Delta P_m = \Delta P_p \left(rac{D_p}{D_m}ight)^2 \left(rac{ho_p}{ho_m}ight)\left(rac{\mu_m}{\mu_p}ight)^2$$
+      </li>
+    </ul>
+  </section>
+  <div class="pager"><a class="next" href="#p7-original"><small>ถัดไป →</small>2. ข้อ 7 ต้นฉบับอาจารย์</a></div>
+</article>
+
+<!-- ========================= PANEL 2: ข้อ 7 ต้นฉบับ ========================= -->
+<article class="panel" id="p7-original">
+  <div class="parthead">
+    <h2 class="part-title">2. ข้อ 7 ต้นฉบับ: แบบจำลองเครื่องสูบน้ำ</h2>
+    <p class="lede">ตัวอย่างข้อสอบบทที่ 4 ข้อ 7 แสดงวิธีทำ 4 สเต็ปมาตรฐานของอาจารย์</p>
+  </div>
+
+  <section>
+    <h2>โจทย์</h2>
+    <blockquote class="th">
+      <span class="tag">ตัวอย่างบทที่ 4 ข้อ 7</span>
+      การทดสอบ Prototype ของเครื่องสูบน้ำที่จะสูบน้ำด้วยอัตรา $1.5\ 	ext{m}^3/	ext{s}$ โดยส่วนที่เป็นใบพัดมีเส้นผ่านศูนย์กลางเท่ากับ $40\ 	ext{cm}$ และความดันเพิ่มขึ้น $400\ 	ext{kPa}$ โดยที่แบบจำลองมีใบพัดมีเส้นผ่านศูนย์กลางเท่ากับ $8\ 	ext{cm}$ จงหาอัตราการไหลและความดันที่เพิ่มขึ้นในแบบจำลอง กำหนดให้ของไหลที่ใช้ในแบบจำลองและ Prototype คือน้ำ
+    </blockquote>
+
+    <div class="tscroll">
+    <table class="dims">
+      <thead><tr><th>พารามิเตอร์</th><th>แบบจำลอง (Model)</th><th>Prototype</th></tr></thead>
+      <tbody>
+        <tr><td class="q">$D$</td><td>$D_m = 8\ 	ext{cm} = 0.08\ 	ext{m}$</td><td>$D_p = 40\ 	ext{cm} = 0.40\ 	ext{m}$</td></tr>
+        <tr><td class="q">$Q$</td><td>$Q_m = ?$</td><td>$Q_p = 1.5\ 	ext{m}^3/	ext{s}$</td></tr>
+        <tr><td class="q">$\Delta P$</td><td>$\Delta P_m = ?$</td><td>$\Delta P_p = 400\ 	ext{kPa}$</td></tr>
+        <tr><td class="q">ของไหล</td><td>น้ำ ($ho_m = ho_p$)</td><td>น้ำ ($\mu_m = \mu_p$)</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>ขั้นตอนการแก้โจทย์</h2>
+    <ol class="steps">
+      <li>
+        <h3>อัตราการไหล $Q_m$ จาก $\Pi_2$</h3>
+        $$rac{Q_m}{D_m} = rac{Q_p}{D_p} \implies Q_m = \left(rac{D_m}{D_p}ight) Q_p = \left(rac{0.08}{0.40}ight)(1.5) = \mathbf{0.30\ 	ext{m}^3/	ext{s}}$$
+      </li>
+      <li>
+        <h3>ความดันเพิ่มขึ้น $\Delta P_m$ จาก $\Pi_1$</h3>
+        $$D_m^2\,\Delta P_m = D_p^2\,\Delta P_p \implies \Delta P_m = \left(rac{D_p}{D_m}ight)^2 \Delta P_p = \left(rac{0.40}{0.08}ight)^2 (400\ 	ext{kPa}) = 25 	imes 400 = \mathbf{10,000\ 	ext{kPa}}$$
+      </li>
+    </ol>
+    <div class="final">
+      <div><p class="lbl">อัตราการไหลในแบบจำลอง</p>$$Q_m = 0.30\ 	ext{m}^3/	ext{s}$$</div>
+      <div><p class="lbl">ความดันที่เพิ่มขึ้นในแบบจำลอง</p>$$\Delta P_m = 10,000\ 	ext{kPa} = 10\ 	ext{MPa}$$</div>
+    </div>
+  </section>
+  <div class="pager">
+    <a class="prev" href="#theory"><small>← ก่อนหน้า</small>1. สรุปทฤษฎี</a>
+    <a class="next" href="#p1-warmup"><small>ถัดไป →</small>3. แบบฝึก 1 (Warm-up)</a>
+  </div>
+</article>
+
+<!-- ========================= PANEL 3: ข้อสอบเสมือน 1 ========================= -->
+<article class="panel" id="p1-warmup">
+  <div class="parthead">
+    <h2 class="part-title">3. ข้อสอบเสมือน 1: สเกล 1:5 ของไหลคือน้ำทั้งคู่ (ระดับ Warm-up)</h2>
+    <p class="lede">ฝึกความแม่นยำในการแทนค่าและทิศทางของอัตราส่วนขนาด</p>
+  </div>
+
+  <section>
+    <h2>โจทย์</h2>
+    <blockquote class="th">
+      <span class="tag">แบบฝึกหัดที่ 1</span>
+      การทดสอบเครื่องสูบน้ำ Prototype ซึ่งออกแบบมาให้สูบน้ำด้วยอัตราการไหล $2.0\ 	ext{m}^3/	ext{s}$ เส้นผ่านศูนย์กลางใบพัด $50\ 	ext{cm}$ และสร้างความดันเพิ่มขึ้น $500\ 	ext{kPa}$ วิศวกรต้องการสร้างแบบจำลอง (Model) ที่มีขนาดเส้นผ่านศูนย์กลางใบพัด $10\ 	ext{cm}$ โดยใช้น้ำในการทดสอบเช่นเดียวกัน จงหาอัตราการไหล ($Q_m$) และความดันที่เพิ่มขึ้น ($\Delta P_m$) ในแบบจำลอง
+    </blockquote>
+
+    <div class="practice-card">
+      <span class="practice-badge">ทดสอบคำนวณด้วยตนเอง</span>
+      <div class="answer-input-group">
+        <label for="p1-q">ลองใส่ $Q_m$ (m³/s):</label>
+        <input type="number" step="0.01" id="p1-q" placeholder="เช่น 0.40">
+        <label for="p1-p">และ $\Delta P_m$ (kPa):</label>
+        <input type="number" step="10" id="p1-p" placeholder="เช่น 12500">
+        <button type="button" class="toggle-btn" onclick="checkP1()">ตรวจคำตอบ</button>
+        <span id="p1-res" class="check-res"></span>
+      </div>
+      <button type="button" class="toggle-btn" onclick="toggleDetails('sol1')">ดูวิธีทำอย่างละเอียด 4 ขั้นตอน</button>
+    </div>
+
+    <div id="sol1" style="display:none; margin-top:1.5rem;">
+      <ol class="steps">
+        <li>
+          <h3>อัตราส่วนขนาดเส้นผ่านศูนย์กลาง</h3>
+          $$rac{D_m}{D_p} = rac{10\ 	ext{cm}}{50\ 	ext{cm}} = rac{0.10\ 	ext{m}}{0.50\ 	ext{m}} = rac{1}{5} = 0.20$$
+        </li>
+        <li>
+          <h3>หา $Q_m$ จาก $\Pi_2 = \dfrac{ho Q}{D \mu}$</h3>
+          $$Q_m = \left(rac{D_m}{D_p}ight) Q_p = (0.20)(2.0\ 	ext{m}^3/	ext{s}) = \mathbf{0.40\ 	ext{m}^3/	ext{s}}$$
+        </li>
+        <li>
+          <h3>หา $\Delta P_m$ จาก $\Pi_1 = \dfrac{D^2 ho \Delta P}{\mu^2}$</h3>
+          $$\Delta P_m = \left(rac{D_p}{D_m}ight)^2 \Delta P_p = (5)^2 	imes (500\ 	ext{kPa}) = 25 	imes 500 = \mathbf{12,500\ 	ext{kPa}} = \mathbf{12.50\ 	ext{MPa}}$$
+        </li>
+      </ol>
+      <div class="final">
+        <div><p class="lbl">อัตราการไหล $Q_m$</p>$$0.40\ 	ext{m}^3/	ext{s}$$</div>
+        <div><p class="lbl">ความดัน $\Delta P_m$</p>$$12,500\ 	ext{kPa} = 12.5\ 	ext{MPa}$$</div>
+      </div>
+    </div>
+  </section>
+  <div class="pager">
+    <a class="prev" href="#p7-original"><small>← ก่อนหน้า</small>2. ข้อ 7 ต้นฉบับ</a>
+    <a class="next" href="#p2-midterm"><small>ถัดไป →</small>4. แบบฝึก 2 (Midterm)</a>
+  </div>
+</article>
+
+<!-- ========================= PANEL 4: ข้อสอบเสมือน 2 ========================= -->
+<article class="panel" id="p2-midterm">
+  <div class="parthead">
+    <h2 class="part-title">4. ข้อสอบเสมือน 2: ทิศทางย้อนกลับ Lab $ightarrow$ Prototype (ระดับ Midterm)</h2>
+    <p class="lede">โจทย์สไตล์ข้อสอบมิดเทอมที่วัดผลการทดสอบในห้องแลป แล้วให้ทำนายพฤติกรรมของเครื่องสูบน้ำจริง</p>
+  </div>
+
+  <section>
+    <h2>โจทย์</h2>
+    <blockquote class="th">
+      <span class="tag">แบบฝึกหัดที่ 2</span>
+      ในห้องปฏิบัติการ วิศวกรทำการทดสอบแบบจำลองเครื่องสูบน้ำขนาดเล็กที่มีเส้นผ่านศูนย์กลางใบพัด $D_m = 12\ 	ext{cm}$ โดยใช้น้ำในการทดสอบ วัดอัตราการไหลได้ $Q_m = 0.45\ 	ext{m}^3/	ext{s}$ และความดันเพิ่มขึ้น $\Delta P_m = 6,400\ 	ext{kPa}$ จงทำนายอัตราการไหล ($Q_p$) และความดันที่เพิ่มขึ้น ($\Delta P_p$) ของเครื่องสูบน้ำ Prototype ของจริงที่มีขนาดเส้นผ่านศูนย์กลางใบพัด $D_p = 48\ 	ext{cm}$ เมื่อใช้งานกับน้ำเช่นเดียวกัน
+    </blockquote>
+
+    <div class="practice-card">
+      <span class="practice-badge">ทดสอบคำนวณด้วยตนเอง</span>
+      <div class="answer-input-group">
+        <label for="p2-q">ลองใส่ $Q_p$ (m³/s):</label>
+        <input type="number" step="0.05" id="p2-q" placeholder="เช่น 1.80">
+        <label for="p2-p">และ $\Delta P_p$ (kPa):</label>
+        <input type="number" step="10" id="p2-p" placeholder="เช่น 400">
+        <button type="button" class="toggle-btn" onclick="checkP2()">ตรวจคำตอบ</button>
+        <span id="p2-res" class="check-res"></span>
+      </div>
+      <button type="button" class="toggle-btn" onclick="toggleDetails('sol2')">ดูวิธีทำอย่างละเอียด 4 ขั้นตอน</button>
+    </div>
+
+    <div id="sol2" style="display:none; margin-top:1.5rem;">
+      <ol class="steps">
+        <li>
+          <h3>อัตราส่วนขยายขนาด (Scale Ratio)</h3>
+          $$\lambda = rac{D_p}{D_m} = rac{48\ 	ext{cm}}{12\ 	ext{cm}} = rac{0.48\ 	ext{m}}{0.12\ 	ext{m}} = 4.0$$
+        </li>
+        <li>
+          <h3>ทำนายอัตราการไหล $Q_p$</h3>
+          $$Q_p = \left(rac{D_p}{D_m}ight) Q_m = (4.0)(0.45\ 	ext{m}^3/	ext{s}) = \mathbf{1.80\ 	ext{m}^3/	ext{s}}$$
+        </li>
+        <li>
+          <h3>ทำนายความดันเพิ่มขึ้น $\Delta P_p$</h3>
+          $$\Delta P_p = \left(rac{D_m}{D_p}ight)^2 \Delta P_m = \left(rac{1}{4.0}ight)^2 (6,400\ 	ext{kPa}) = rac{6,400}{16} = \mathbf{400\ 	ext{kPa}}$$
+        </li>
+      </ol>
+      <div class="final">
+        <div><p class="lbl">อัตราการไหล $Q_p$</p>$$1.80\ 	ext{m}^3/	ext{s}$$</div>
+        <div><p class="lbl">ความดัน $\Delta P_p$</p>$$400\ 	ext{kPa}$$</div>
+      </div>
+    </div>
+  </section>
+  <div class="pager">
+    <a class="prev" href="#p1-warmup"><small>← ก่อนหน้า</small>3. แบบฝึก 1 (Warm-up)</a>
+    <a class="next" href="#p3-mastery"><small>ถัดไป →</small>5. แบบฝึก 3 (Mastery)</a>
+  </div>
+</article>
+
+<!-- ========================= PANEL 5: ข้อสอบเสมือน 3 ========================= -->
+<article class="panel" id="p3-mastery">
+  <div class="parthead">
+    <h2 class="part-title">5. ข้อสอบเสมือน 3: ของไหลต่างชนิด น้ำมัน $ightarrow$ น้ำ (ระดับ Mastery)</h2>
+    <p class="lede">ระดับท้าทายสูงสุด: เมื่อของไหลของแบบจำลองไม่ใช่ของไหลชนิดเดียวกับ Prototype</p>
+  </div>
+
+  <section>
+    <h2>โจทย์</h2>
+    <blockquote class="th">
+      <span class="tag">แบบฝึกหัดที่ 3</span>
+      การทดสอบแบบจำลองเครื่องสูบน้ำขนาดใบพัด $D_m = 6\ 	ext{cm}$ โดยใช้สารหล่อลื่นพิเศษ ($ho_m = 800\ 	ext{kg/m}^3, \mu_m = 1.20 	imes 10^{-3}\ 	ext{Pa}\cdot	ext{s}$) เพื่อจำลองเครื่องสูบน้ำจริง (Prototype) สูบน้ำ ($ho_p = 1,000\ 	ext{kg/m}^3, \mu_p = 1.00 	imes 10^{-3}\ 	ext{Pa}\cdot	ext{s}$) ขนาด $D_p = 30\ 	ext{cm}$ ทำงานที่ $Q_p = 1.25\ 	ext{m}^3/	ext{s}$ และ $\Delta P_p = 360\ 	ext{kPa}$ จงหาอัตราการไหล ($Q_m$) และความดันที่เพิ่มขึ้น ($\Delta P_m$) ในแบบจำลอง
+    </blockquote>
+
+    <div class="practice-card">
+      <span class="practice-badge">ทดสอบคำนวณด้วยตนเอง</span>
+      <div class="answer-input-group">
+        <label for="p3-q">ลองใส่ $Q_m$ (m³/s):</label>
+        <input type="number" step="0.025" id="p3-q" placeholder="เช่น 0.375">
+        <label for="p3-p">และ $\Delta P_m$ (kPa):</label>
+        <input type="number" step="100" id="p3-p" placeholder="เช่น 16200">
+        <button type="button" class="toggle-btn" onclick="checkP3()">ตรวจคำตอบ</button>
+        <span id="p3-res" class="check-res"></span>
+      </div>
+      <button type="button" class="toggle-btn" onclick="toggleDetails('sol3')">ดูวิธีทำอย่างละเอียด 4 ขั้นตอน</button>
+    </div>
+
+    <div id="sol3" style="display:none; margin-top:1.5rem;">
+      <ol class="steps">
+        <li>
+          <h3>หา $Q_m$ (ค่า $ho$ และ $\mu$ ไม่ตัดกัน)</h3>
+          $$Q_m = Q_p \left(rac{D_m}{D_p}ight) \left(rac{ho_p}{ho_m}ight) \left(rac{\mu_m}{\mu_p}ight)$$
+          $$Q_m = (1.25) 	imes \left(rac{0.06}{0.30}ight) 	imes \left(rac{1,000}{800}ight) 	imes \left(rac{1.20 	imes 10^{-3}}{1.00 	imes 10^{-3}}ight) = \mathbf{0.375\ 	ext{m}^3/	ext{s}}$$
+        </li>
+        <li>
+          <h3>หา $\Delta P_m$</h3>
+          $$\Delta P_m = \Delta P_p \left(rac{D_p}{D_m}ight)^2 \left(rac{ho_p}{ho_m}ight) \left(rac{\mu_m}{\mu_p}ight)^2$$
+          $$\Delta P_m = (360) 	imes (5)^2 	imes (1.25) 	imes (1.20)^2 = 360 	imes 25 	imes 1.25 	imes 1.44 = \mathbf{16,200\ 	ext{kPa}} = \mathbf{16.20\ 	ext{MPa}}$$
+        </li>
+      </ol>
+      <div class="final">
+        <div><p class="lbl">อัตราการไหล $Q_m$</p>$$0.375\ 	ext{m}^3/	ext{s}$$</div>
+        <div><p class="lbl">ความดัน $\Delta P_m$</p>$$16,200\ 	ext{kPa} = 16.20\ 	ext{MPa}$$</div>
+      </div>
+    </div>
+  </section>
+  <div class="pager">
+    <a class="prev" href="#p2-midterm"><small>← ก่อนหน้า</small>4. แบบฝึก 2 (Midterm)</a>
+    <a class="next" href="#traps"><small>ถัดไป →</small>6. จุดดักคะแนนสอบ</a>
+  </div>
+</article>
+
+<!-- ========================= PANEL 6: จุดดักคะแนน ========================= -->
+<article class="panel" id="traps">
+  <div class="parthead">
+    <h2 class="part-title">6. สรุปจุดดักคะแนนสอบ & เคล็ดลับจาก Inspector</h2>
+    <p class="lede">3 สิ่งที่นักศึกษาวิศวกรรมมักทำพลาดในห้องสอบ และสูตรโกงตรวจคำตอบใน 10 วินาที</p>
+  </div>
+
+  <section>
+    <h2>3 ข้อผิดพลาดยอดฮิต</h2>
+    <ul class="tips">
+      <li class="warn"><span class="lead">1. ทิศทางของอัตราส่วนขนาด $D$:</span> สำหรับ $Q$ อัตราส่วนคือ $(D_m/D_p)^1$ (แบบจำลองเล็กกว่า $Q$ ต้องน้อยกว่า) แต่สำหรับ $\Delta P$ อัตราส่วนคือ $(D_p/D_m)^2$ (แบบจำลองเล็กกว่า ความดันกลับพุ่งสูงขึ้นเป็นกำลังสอง) ให้ตั้งสมการและย้ายข้างเสมอ อย่าเดาในใจ</li>
+      <li class="warn"><span class="lead">2. ที่มาของมิติ $P$ และ $\mu$:</span> ในกระดาษคำตอบ ขั้นตอนที่ 2 ต้องแสดงที่มา $P = F/A = ML^{-1}T^{-2}$ และ $	au = \mu(du/dy) \implies \mu = ML^{-1}T^{-1}$ เสมอ เพราะอาจารย์มีช่องให้คะแนนเฉพาะตรงนี้</li>
+      <li><span class="lead">3. ตัวแปรซ้ำต้องเป็นชุดเดิม:</span> ทุกกลุ่ม $\Pi$ ต้องใช้ $(D, ho, \mu)$ ชุดเดียวกัน ห้ามสลับตัวแปรซ้ำไปมาระหว่างข้อ</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>สูตรโกงตรวจคำตอบด้วย Reynolds Number ($Re$)</h2>
+    <p>เนื่องจาก $\Pi_2 \propto Re$ ดังนั้นเมื่อทำเสร็จ ให้ลองตรวจดูว่า $Re_m = Re_p$ หรือไม่:</p>
+    $$Re = rac{4 ho Q}{\pi D \mu}$$
+    <p class="muted">ถ้าค่า $Re$ ทั้งสองฝั่งเท่ากัน แสดงว่าตัวเลขที่คุณคำนวณมานั้นถูกต้องแม่นยำ 100% แน่นอน!</p>
+  </section>
+  <div class="pager"><a class="prev" href="#p3-mastery"><small>← ก่อนหน้า</small>5. แบบฝึก 3 (Mastery)</a></div>
+</article>
+
+</main>
+<script>
+(function(){
+  var panels=[].slice.call(document.querySelectorAll('article.panel'));
+  var tabs=[].slice.call(document.querySelectorAll('nav.tabs a'));
+  var titles=['สรุปทฤษฎี','ข้อ 7 ต้นฉบับ','แบบฝึก 1 (Warm-up)','แบบฝึก 2 (Midterm)','แบบฝึก 3 (Mastery)','จุดดักคะแนน'];
+
+  function show(id){
+    var idx=0; panels.forEach(function(p,i){ if(p.id===id) idx=i; });
+    panels.forEach(function(p,i){ p.hidden=(i!==idx); });
+    tabs.forEach(function(t,i){
+      t.classList.toggle('on',i===idx);
+      if(i===idx){ t.setAttribute('aria-current','page'); t.scrollIntoView({inline:'center',block:'nearest'}); }
+      else t.removeAttribute('aria-current');
+    });
+    document.title=titles[idx]+' | Fluid Pump Similitude Master Guide';
+  }
+  function go(id,scroll){
+    show(id);
+    try{ history.replaceState(null,'','#'+id); }catch(e){}
+    if(scroll) window.scrollTo(0,0);
+  }
+  [].slice.call(document.querySelectorAll('nav.tabs a, .pager a')).forEach(function(a){
+    a.addEventListener('click',function(e){ e.preventDefault(); go(a.getAttribute('href').slice(1),true); });
+  });
+
+  window.toggleDetails = function(id) {
+    var el = document.getElementById(id);
+    if (el) {
+      el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'block' : 'none';
+    }
+  };
+  window.checkP1 = function() {
+    var q = parseFloat(document.getElementById('p1-q').value);
+    var p = parseFloat(document.getElementById('p1-p').value);
+    var res = document.getElementById('p1-res');
+    if (isNaN(q) || isNaN(p)) { res.textContent = 'กรุณาใส่ตัวเลขให้ครบ'; res.className = 'check-res wrong'; return; }
+    var qOk = Math.abs(q - 0.40) < 0.02;
+    var pOk = Math.abs(p - 12500) < 50;
+    if (qOk && pOk) {
+      res.textContent = 'ถูกต้องแม่นยำ 100%! (Qm = 0.4 m³/s, ΔPm = 12,500 kPa)';
+      res.className = 'check-res correct';
+    } else {
+      res.textContent = 'ยังไม่ถูกต้อง (Qm ควรได้ 0.40, ΔPm ควรได้ 12,500)';
+      res.className = 'check-res wrong';
+    }
+  };
+  window.checkP2 = function() {
+    var q = parseFloat(document.getElementById('p2-q').value);
+    var p = parseFloat(document.getElementById('p2-p').value);
+    var res = document.getElementById('p2-res');
+    if (isNaN(q) || isNaN(p)) { res.textContent = 'กรุณาใส่ตัวเลขให้ครบ'; res.className = 'check-res wrong'; return; }
+    var qOk = Math.abs(q - 1.80) < 0.05;
+    var pOk = Math.abs(p - 400) < 10;
+    if (qOk && pOk) {
+      res.textContent = 'ถูกต้องสมบูรณ์แบบ! (Qp = 1.80 m³/s, ΔPp = 400 kPa)';
+      res.className = 'check-res correct';
+    } else {
+      res.textContent = 'ยังไม่ถูกต้อง (Qp ควรได้ 1.80, ΔPp ควรได้ 400)';
+      res.className = 'check-res wrong';
+    }
+  };
+  window.checkP3 = function() {
+    var q = parseFloat(document.getElementById('p3-q').value);
+    var p = parseFloat(document.getElementById('p3-p').value);
+    var res = document.getElementById('p3-res');
+    if (isNaN(q) || isNaN(p)) { res.textContent = 'กรุณาใส่ตัวเลขให้ครบ'; res.className = 'check-res wrong'; return; }
+    var qOk = Math.abs(q - 0.375) < 0.02;
+    var pOk = Math.abs(p - 16200) < 100;
+    if (qOk && pOk) {
+      res.textContent = 'ยอดเยี่ยมมาก! คำนวณของไหลต่างชนิดถูกต้อง (Qm = 0.375, ΔPm = 16,200)';
+      res.className = 'check-res correct';
+    } else {
+      res.textContent = 'ยังไม่ถูกต้อง (Qm ควรได้ 0.375 m³/s, ΔPm ควรได้ 16,200 kPa)';
+      res.className = 'check-res wrong';
+    }
+  };
+
+  window.addEventListener('hashchange',function(){ show((location.hash||'').slice(1)); });
+  show((location.hash||'').slice(1));
+})();
+</script>
+</body>
+</html>
