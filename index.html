@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
-<title>Fluid Mechanics: Pump Similitude Master Guide (แนวข้อ 7) | Thanaporn Nopparat</title>
+<title>Fluid Mechanics: Pump Similitude Master Guide (แนวข้อ 7 ฉบับเต็มตามเกณฑ์อาจารย์) | Thanaporn Nopparat</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600&family=Noto+Serif+Thai:wght@500;600&display=swap" rel="stylesheet">
@@ -49,8 +49,8 @@
     color: var(--amber); background: oklch(0.25 0.04 78); padding: 0.25rem 0.75rem; border-radius: 999px;
     margin-bottom: 0.8rem;
   }
-  h1.top { font-family: var(--serif); font-weight: 600; font-size: clamp(1.8rem, 4vw, 2.4rem); line-height: 1.3; margin: 0 0 0.6rem; text-wrap: balance; }
-  .lede { color: var(--muted); max-width: 62ch; margin: 0; font-size: 1.05rem; }
+  h1.top { font-family: var(--serif); font-weight: 600; font-size: clamp(1.8rem, 4vw, 2.3rem); line-height: 1.3; margin: 0 0 0.6rem; text-wrap: balance; }
+  .lede { color: var(--muted); max-width: 64ch; margin: 0; font-size: 1.05rem; }
 
   nav.tabs {
     position: sticky; top: 0; z-index: 10; background: var(--bg);
@@ -102,11 +102,12 @@
   ol.steps > li { counter-increment: s; position: relative; padding: 1.2rem 0 1.2rem 3rem; border-top: 1px solid var(--line); }
   ol.steps > li:last-child { border-bottom: 1px solid var(--line); }
   ol.steps > li::before { content: counter(s); position: absolute; left: 0; top: 1rem; font: 600 1.7rem/1.3 var(--serif); color: var(--amber); }
-  ol.steps h3 { font: 600 1.05rem/1.6 var(--sans); margin: 0 0 0.3rem; }
+  ol.steps h3 { font: 600 1.08rem/1.6 var(--sans); margin: 0 0 0.35rem; color: var(--text); }
   ol.steps p { color: var(--muted); margin-bottom: 0.5rem; }
   ol.steps p .katex { color: var(--text); }
   ol.steps .katex-display { margin: 0.5rem 0 0.2rem; text-align: left; }
   ol.steps .katex-display > .katex { text-align: left; }
+  .sub { margin-top: 0.75rem; }
 
   .final {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 1px;
@@ -154,6 +155,12 @@
   .check-res.correct { color: var(--emerald); }
   .check-res.wrong { color: var(--rose); }
 
+  .exam-box {
+    background: oklch(0.19 0.025 262); border-left: 3px solid var(--emerald); border-radius: 0 12px 12px 0;
+    padding: 0.9rem 1.2rem; margin: 1rem 0;
+  }
+  .exam-box .tag { font-size: 0.8rem; font-weight: 600; color: var(--emerald); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 0.3rem; }
+
   .pager { display: flex; justify-content: space-between; gap: 1rem; margin-top: 3.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
   .pager a { color: var(--text); text-decoration: none; border: 1px solid var(--line); border-radius: 14px; padding: 0.75rem 1.1rem; max-width: 48%; }
   .pager a:hover { border-color: var(--amber); }
@@ -165,48 +172,55 @@
 <body>
 <main>
 <header>
-  <div class="badge-owner">Engineering Study Portal · TU</div>
+  <div class="badge-owner">Engineering Study Portal · TU (ฉบับแสดงวิธีทำเต็ม 100%)</div>
   <h1 class="top">Fluid Mechanics: Pump Similitude Master Guide</h1>
-  <p class="lede">คู่มือทบทวนและคลังข้อสอบเสมือนจริงเจาะลึก <strong>แนวข้อ 7 (แบบจำลองเครื่องสูบน้ำและความคล้ายคลึง)</strong> โดย ฐนกร นพรัตน์ คณะวิศวกรรมศาสตร์</p>
+  <p class="lede">คู่มือทบทวนและคลังข้อสอบเสมือนจริงเจาะลึก <strong>แนวข้อ 7 (แบบจำลองเครื่องสูบน้ำและความคล้ายคลึง)</strong> ทำตามขั้นตอนตรวจข้อสอบของอาจารย์แบบบรรทัดต่อบรรทัด โดย ฐนกร นพรัตน์</p>
 </header>
 
 <nav class="tabs" aria-label="เลือกหัวข้อ">
-  <a href="#theory">1. สรุปทฤษฎี & สูตรลัด</a>
-  <a href="#p7-original">2. ข้อ 7 ต้นฉบับ</a>
-  <a href="#p1-warmup">3. แบบฝึก 1 (Warm-up)</a>
-  <a href="#p2-midterm">4. แบบฝึก 2 (Midterm)</a>
-  <a href="#p3-mastery">5. แบบฝึก 3 (Mastery)</a>
-  <a href="#traps">6. จุดดักคะแนนสอบ</a>
+  <a href="#theory">1. สรุปขั้นตอนตรวจข้อสอบ</a>
+  <a href="#p7-original">2. ข้อ 7 ต้นฉบับอาจารย์</a>
+  <a href="#p1-warmup">3. แบบฝึก 1 (Warm-up สเกล 1:5)</a>
+  <a href="#p2-midterm">4. แบบฝึก 2 (Midterm ทิศย้อนกลับ)</a>
+  <a href="#p3-mastery">5. แบบฝึก 3 (Mastery ของไหลต่างชนิด)</a>
+  <a href="#traps">6. กฎเหล็ก & จุดดักคะแนนสอบ</a>
 </nav>
 
-<!-- ========================= PANEL 1: สรุปทฤษฎี ========================= -->
+<!-- ========================= PANEL 1: สรุปขั้นตอนอาจารย์ ========================= -->
 <article class="panel" id="theory">
   <div class="parthead">
-    <h2 class="part-title">1. สรุปมโนทัศน์ & สูตรลัดใน 1 นาที</h2>
-    <p class="lede">แก่นของโจทย์เครื่องสูบน้ำแบบหมุนเหวี่ยงตามทฤษฎีบทบัคกิ้งแฮม พาย (Buckingham $\Pi$ Theorem)</p>
+    <h2 class="part-title">1. แผนผังขั้นตอนการทำข้อสอบอัตนัย (ฉบับเก็บคะแนนเต็ม 100%)</h2>
+    <p class="lede">ในข้อสอบอัตนัยวิชา Fluid Mechanics บทที่ 4 คะแนนกว่า 80% อยู่ที่การแสดงที่มาของมิติและการแก้ระบบสมการเลขชี้กำลัง ห้ามกระโดดใช้สูตรสำเร็จเด็ดขาด</p>
   </div>
 
   <section>
-    <h2>ฟังก์ชันตั้งต้นและการเลือกตัวแปรซ้ำ</h2>
-    <p>ความดันที่เพิ่มขึ้นของเครื่องสูบน้ำ $\Delta P$ ขึ้นอยู่กับอัตราการไหล $Q$, ขนาดเส้นผ่านศูนย์กลางใบพัด $D$, และคุณสมบัติของไหล ($\rho, \mu$):</p>
-    $$\Delta P = f(Q,\ D,\ \rho,\ \mu)$$
-    <p class="muted">นับตัวแปร: $k = 5$ ตัว ($\Delta P, Q, D, \rho, \mu$), มิติพื้นฐาน: $r = 3$ ($M, L, T$) ดังนั้นจะได้กลุ่มไร้มิติ $\Pi = 5 - 3 = 2$ กลุ่ม โดยเลือกตัวแปรซ้ำคือ $(D, \rho, \mu)$</p>
-    <div class="formula">
-      $$\Pi_1 = \frac{D^2 \rho\,\Delta P}{\mu^2} \qquad\qquad \Pi_2 = \frac{\rho\,Q}{D\,\mu}$$
-    </div>
-  </section>
-
-  <section>
-    <h2>สูตรสำเร็จในการจับคู่ Model และ Prototype</h2>
-    <p>เมื่อตั้ง $\Pi_m = \Pi_p$ จะได้สูตรสำเร็จที่ใช้ทำนายผลได้ทันที:</p>
-    <ul class="tips">
-      <li><span class="lead">กรณีของไหลชนิดเดียวกัน (น้ำทั้งคู่):</span> $\rho$ และ $\mu$ ตัดทอนกันหมด
-        $$Q_m = \left(\frac{D_m}{D_p}\right) Q_p \qquad\qquad \Delta P_m = \left(\frac{D_p}{D_m}\right)^2 \Delta P_p$$
+    <h2>ลำดับการเขียนตอบ 6 ขั้นตอนตามเกณฑ์อาจารย์</h2>
+    <ol class="steps">
+      <li>
+        <h3>เขียนฟังก์ชันความสัมพันธ์ และนับจำนวนตัวแปร</h3>
+        <p>ระบุตัวแปรตามและตัวแปรอิสระ นับจำนวนตัวแปรทั้งหมด $k$ และมิติพื้นฐาน $r = 3$ ($M, L, T$) เพื่อคำนวณจำนวนกลุ่มไร้มิติ $\Pi = k - r$</p>
       </li>
-      <li><span class="lead">กรณีของไหลต่างชนิดกัน:</span> ต้องแทนค่าความหนาแน่นและความหนืดครบทุกตัว
-        $$Q_m = Q_p \left(\frac{D_m}{D_p}\right)\left(\frac{\rho_p}{\rho_m}\right)\left(\frac{\mu_m}{\mu_p}\right) \qquad\qquad \Delta P_m = \Delta P_p \left(\frac{D_p}{D_m}\right)^2 \left(\frac{\rho_p}{\rho_m}\right)\left(\frac{\mu_m}{\mu_p}\right)^2$$
+      <li>
+        <h3>หามิติของทุกตัวแปร และต้องแสดงที่มาของ $P$ และ $\mu$</h3>
+        <p>อาจารย์ให้คะแนนการพิสูจน์มิติ $P = F/A = ML^{-1}T^{-2}$ และ $\tau = \mu(du/dy) \implies \mu = ML^{-1}T^{-1}$ ที่มุมบนของกระดาษคำตอบเสมอ</p>
       </li>
-    </ul>
+      <li>
+        <h3>เลือกตัวแปรซ้ำ (Repeating Variables) และตัวแปรไม่ซ้ำ</h3>
+        <p>เลือก $r = 3$ ตัว ได้แก่ $(D, \rho, \mu)$ ซึ่งประกอบด้วย $M, L, T$ ครบถ้วน ไม่ซ้ำมิติกัน และวัดค่าง่าย</p>
+      </li>
+      <li>
+        <h3>ตั้งสมการและแก้ระบบสมการเลขชี้กำลัง $A, B, C$ ทีละกลุ่ม $\Pi$</h3>
+        <p>แทนมิติ $M^0 L^0 T^0$ เทียบเลขชี้กำลังของ $M, L, T$ และแก้หาค่า $C \rightarrow B \rightarrow A$ แสดงวิธีทดทุกบรรทัด</p>
+      </li>
+      <li>
+        <h3>จับคู่สมมาตร $\Pi_m = \Pi_p$ และแทนค่าตัวเลข</h3>
+        <p>ย้ายข้างสมการ หาค่าตัวแปรที่โจทย์ต้องการ พร้อมแสดงการตัดทอนตัวแปรของไหล ($\rho, \mu$)</p>
+      </li>
+      <li>
+        <h3>สรุปคำตอบสุดท้ายพร้อมหน่วย และตรวจทานด้วยหลักฟิสิกส์</h3>
+        <p>เขียนหน่วยกำกับทุกครั้ง และตรวจคำตอบด้วยความสัมพันธ์ของ Reynolds Number ($Re_m = Re_p$)</p>
+      </li>
+    </ol>
   </section>
   <div class="pager"><a class="next" href="#p7-original"><small>ถัดไป →</small>2. ข้อ 7 ต้นฉบับอาจารย์</a></div>
 </article>
@@ -214,8 +228,8 @@
 <!-- ========================= PANEL 2: ข้อ 7 ต้นฉบับ ========================= -->
 <article class="panel" id="p7-original">
   <div class="parthead">
-    <h2 class="part-title">2. ข้อ 7 ต้นฉบับ: แบบจำลองเครื่องสูบน้ำ</h2>
-    <p class="lede">ตัวอย่างข้อสอบบทที่ 4 ข้อ 7 แสดงวิธีทำ 4 สเต็ปมาตรฐานของอาจารย์</p>
+    <h2 class="part-title">2. ข้อ 7 ต้นฉบับ: แบบจำลองเครื่องสูบน้ำ (เฉลยเต็มทุกขั้นตอน)</h2>
+    <p class="lede">ตัวอย่างข้อสอบบทที่ 4 ข้อ 7 แสดงวิธีทำตามลำดับขั้นของอาจารย์แบบสมบูรณ์</p>
   </div>
 
   <section>
@@ -227,27 +241,105 @@
 
     <div class="tscroll">
     <table class="dims">
-      <thead><tr><th>พารามิเตอร์</th><th>แบบจำลอง (Model)</th><th>Prototype</th></tr></thead>
+      <thead><tr><th>พารามิเตอร์</th><th>แบบจำลอง (Model)</th><th>Prototype</th><th>หมายเหตุ</th></tr></thead>
       <tbody>
-        <tr><td class="q">$D$</td><td>$D_m = 8\ \text{cm} = 0.08\ \text{m}$</td><td>$D_p = 40\ \text{cm} = 0.40\ \text{m}$</td></tr>
-        <tr><td class="q">$Q$</td><td>$Q_m = ?$</td><td>$Q_p = 1.5\ \text{m}^3/\text{s}$</td></tr>
-        <tr><td class="q">$\Delta P$</td><td>$\Delta P_m = ?$</td><td>$\Delta P_p = 400\ \text{kPa}$</td></tr>
-        <tr><td class="q">ของไหล</td><td>น้ำ ($\rho_m = \rho_p$)</td><td>น้ำ ($\mu_m = \mu_p$)</td></tr>
+        <tr><td class="q">$D$</td><td>$D_m = 8\ \text{cm} = 0.08\ \text{m}$</td><td>$D_p = 40\ \text{cm} = 0.40\ \text{m}$</td><td>สเกล $D_p / D_m = 5$</td></tr>
+        <tr><td class="q">$Q$</td><td>$Q_m = ?$</td><td>$Q_p = 1.5\ \text{m}^3/\text{s}$</td><td>หาจาก $\Pi_2$</td></tr>
+        <tr><td class="q">$\Delta P$</td><td>$\Delta P_m = ?$</td><td>$\Delta P_p = 400\ \text{kPa}$</td><td>หาจาก $\Pi_1$</td></tr>
+        <tr><td class="q">ของไหล</td><td>น้ำ ($\rho_m = \rho_p$)</td><td>น้ำ ($\mu_m = \mu_p$)</td><td>ของไหลเดียวกันตัดกันได้</td></tr>
       </tbody>
     </table>
     </div>
   </section>
 
   <section>
-    <h2>ขั้นตอนการแก้โจทย์</h2>
+    <h2>ขั้นตอนการแก้โจทย์ฉบับเต็ม</h2>
     <ol class="steps">
       <li>
-        <h3>อัตราการไหล $Q_m$ จาก $\Pi_2$</h3>
-        $$\frac{Q_m}{D_m} = \frac{Q_p}{D_p} \implies Q_m = \left(\frac{D_m}{D_p}\right) Q_p = \left(\frac{0.08}{0.40}\right)(1.5) = \mathbf{0.30\ \text{m}^3/\text{s}}$$
+        <h3>เขียนฟังก์ชัน แล้วนับ $k$ และ $r$</h3>
+        <p>ความดันที่เพิ่มขึ้นของเครื่องสูบน้ำขึ้นกับอัตราการไหล ขนาดใบพัด และคุณสมบัติของของไหล:</p>
+        $$\Delta P = f(Q,\ D,\ \rho,\ \mu)$$
+        <p class="sub">มีตัวแปรทั้งหมด $5$ ตัว ($\Delta P, Q, D, \rho, \mu$) และมิติพื้นฐาน $3$ ตัว ($M, L, T$) ตามทฤษฎีของบัคกิ้งแฮม จำนวนกลุ่มตัวแปรไม่มีมิติ คือ:</p>
+        $$k = 5,\qquad r = 3,\qquad \text{จำนวน }\Pi = k - r = 5 - 3 = 2$$
       </li>
+
       <li>
-        <h3>ความดันเพิ่มขึ้น $\Delta P_m$ จาก $\Pi_1$</h3>
-        $$D_m^2\,\Delta P_m = D_p^2\,\Delta P_p \implies \Delta P_m = \left(\frac{D_p}{D_m}\right)^2 \Delta P_p = \left(\frac{0.40}{0.08}\right)^2 (400\ \text{kPa}) = 25 \times 400 = \mathbf{10,000\ \text{kPa}}$$
+        <h3>หามิติของทุกตัวแปร (แสดงที่มาละเอียด)</h3>
+        <p>ความดันคือแรงต่อพื้นที่ และแรงคือมวลคูณความเร่ง:</p>
+        $$P = \frac{F}{A} = \frac{ma}{A} = M\left(\frac{L}{T^2}\right)\left(\frac{1}{L^2}\right) = [ML^{-1}T^{-2}]$$
+        <p class="sub">ความหนืดหามาจากกฎความหนืดของนิวตัน $\tau = \dfrac{F}{A} = \mu\dfrac{du}{dy}$ โดย $\dfrac{du}{dy}$ มีมิติ $\dfrac{L/T}{L} = T^{-1}$ ดังนั้น:</p>
+        $$\mu = \frac{\tau}{du/dy} = \frac{ML^{-1}T^{-2}}{T^{-1}} = [ML^{-1}T^{-1}]$$
+        <div class="formula sub">
+          $$\Delta P = [ML^{-1}T^{-2}],\quad Q = [L^3 T^{-1}],\quad D = [L],\quad \rho = [ML^{-3}],\quad \mu = [ML^{-1}T^{-1}]$$
+        </div>
+      </li>
+
+      <li>
+        <h3>เลือกตัวแปรซ้ำ และตัวแปรไม่ซ้ำ</h3>
+        <p>เลือก $r = 3$ ตัวที่รวมกันแล้วมีครบ $M, L, T$ และไม่เป็นตัวแปรไม่มีมิติ หรือมีมิติเหมือนกัน:</p>
+        $$\text{ตัวแปรซ้ำ: } D,\ \rho,\ \mu \qquad\qquad \text{ตัวแปรไม่ซ้ำ: } \Delta P,\ Q$$
+        <p class="sub">$D$ ให้ $L$, $\rho$ ให้ $M$ และ $L$, และ $\mu$ ให้ $T$ ทั้งสามตัววัดได้ง่าย จึงเหมาะที่จะเป็นตัวแปรซ้ำ</p>
+      </li>
+
+      <li>
+        <h3>แก้หา $\Pi_1$ (ตัวแปรไม่ซ้ำคือ $\Delta P$) ด้วยระบบสมการเลขชี้กำลัง</h3>
+        <p>นำตัวแปรไม่ซ้ำคูณกับตัวแปรซ้ำที่ยกกำลังไม่ทราบค่า แล้วทำให้ไม่มีมิติ:</p>
+        $$\Pi_1 = D^A \rho^B \mu^C \Delta P$$
+        $$M^0 L^0 T^0 = [L]^A [ML^{-3}]^B [ML^{-1}T^{-1}]^C [ML^{-1}T^{-2}]$$
+        $$= M^{\,B+C+1}\;L^{\,A-3B-C-1}\;T^{\,-C-2}$$
+        <p class="sub">เทียบเลขชี้กำลังของแต่ละมิติให้เท่ากับศูนย์:</p>
+        $$\begin{aligned}
+        M:&\quad B + C + 1 = 0 \\
+        L:&\quad A - 3B - C - 1 = 0 \\
+        T:&\quad -C - 2 = 0
+        \end{aligned}$$
+        <p class="sub">เริ่มแก้จาก $T$ ซึ่งมีตัวแปรเดียว แล้วแทนค่าย้อนกลับ:</p>
+        $$\begin{aligned}
+        T:&\quad C = -2 \\
+        M:&\quad B + (-2) + 1 = 0 \implies B = 1 \\
+        L:&\quad A - 3(1) - (-2) - 1 = 0 \implies A - 3 + 2 - 1 = 0 \implies A = 2
+        \end{aligned}$$
+        <div class="formula sub">
+          $$\Pi_1 = D^2 \rho^1 \mu^{-2} \Delta P = \frac{D^2 \rho\,\Delta P}{\mu^2}$$
+        </div>
+      </li>
+
+      <li>
+        <h3>แก้หา $\Pi_2$ (ตัวแปรไม่ซ้ำคือ $Q$) ด้วยระบบสมการเลขชี้กำลัง</h3>
+        $$\Pi_2 = D^A \rho^B \mu^C Q$$
+        $$M^0 L^0 T^0 = [L]^A [ML^{-3}]^B [ML^{-1}T^{-1}]^C [L^3 T^{-1}]$$
+        $$= M^{\,B+C}\;L^{\,A-3B-C+3}\;T^{\,-C-1}$$
+        <p class="sub">เทียบเลขชี้กำลังของแต่ละมิติให้เท่ากับศูนย์:</p>
+        $$\begin{aligned}
+        M:&\quad B + C = 0 \\
+        L:&\quad A - 3B - C + 3 = 0 \\
+        T:&\quad -C - 1 = 0
+        \end{aligned}$$
+        <p class="sub">เริ่มแก้จาก $T$:</p>
+        $$\begin{aligned}
+        T:&\quad C = -1 \\
+        M:&\quad B + (-1) = 0 \implies B = 1 \\
+        L:&\quad A - 3(1) - (-1) + 3 = 0 \implies A - 3 + 1 + 3 = 0 \implies A = -1
+        \end{aligned}$$
+        <div class="formula sub">
+          $$\Pi_2 = D^{-1} \rho^1 \mu^{-1} Q = \frac{\rho\,Q}{D\,\mu}$$
+        </div>
+        <p class="sub">ตรวจมิติ: $[\Pi_2] = \dfrac{[ML^{-3}][L^3 T^{-1}]}{[L][ML^{-1}T^{-1}]} = \dfrac{[MT^{-1}]}{[MT^{-1}]} = 1 \quad \checkmark$</p>
+      </li>
+
+      <li>
+        <h3>จับคู่แบบจำลองกับ Prototype ให้ $\Pi$ เท่ากัน</h3>
+        <p>เนื่องจากของไหลเป็นน้ำทั้งคู่ ดังนั้น $\rho_m = \rho_p$ และ $\mu_m = \mu_p$ จึงตัดทอนกันได้:</p>
+
+        <p class="sub"><b>1) หาความดันที่เพิ่มขึ้นจาก $\Pi_1$:</b></p>
+        $$\left[\frac{D^2 \rho\,\Delta P}{\mu^2}\right]_m = \left[\frac{D^2 \rho\,\Delta P}{\mu^2}\right]_p$$
+        $$D_m^2\,\Delta P_m = D_p^2\,\Delta P_p$$
+        $$\Delta P_m = \left(\frac{D_p}{D_m}\right)^2 \Delta P_p = \left(\frac{0.40\ \text{m}}{0.08\ \text{m}}\right)^2 (400\ \text{kPa}) = (5)^2 \times 400 = 25 \times 400 = \mathbf{10,000\ \text{kPa}}$$
+
+        <p class="sub"><b>2) หาอัตราการไหลจาก $\Pi_2$:</b></p>
+        $$\left[\frac{\rho\,Q}{D\,\mu}\right]_m = \left[\frac{\rho\,Q}{D\,\mu}\right]_p$$
+        $$\frac{Q_m}{D_m} = \frac{Q_p}{D_p}$$
+        $$Q_m = \left(\frac{D_m}{D_p}\right) Q_p = \left(\frac{0.08\ \text{m}}{0.40\ \text{m}}\right)(1.5\ \text{m}^3/\text{s}) = \left(\frac{1}{5}\right)(1.5) = \mathbf{0.30\ \text{m}^3/\text{s}}$$
       </li>
     </ol>
     <div class="final">
@@ -256,24 +348,36 @@
     </div>
   </section>
   <div class="pager">
-    <a class="prev" href="#theory"><small>← ก่อนหน้า</small>1. สรุปทฤษฎี</a>
+    <a class="prev" href="#theory"><small>← ก่อนหน้า</small>1. สรุปขั้นตอน</a>
     <a class="next" href="#p1-warmup"><small>ถัดไป →</small>3. แบบฝึก 1 (Warm-up)</a>
   </div>
 </article>
 
-<!-- ========================= PANEL 3: ข้อสอบเสมือน 1 ========================= -->
+<!-- ========================= PANEL 3: แบบฝึก 1 ========================= -->
 <article class="panel" id="p1-warmup">
   <div class="parthead">
-    <h2 class="part-title">3. ข้อสอบเสมือน 1: สเกล 1:5 ของไหลคือน้ำทั้งคู่ (ระดับ Warm-up)</h2>
-    <p class="lede">ฝึกความแม่นยำในการแทนค่าและทิศทางของอัตราส่วนขนาด</p>
+    <h2 class="part-title">3. ข้อสอบเสมือน 1: สเกล 1:5 น้ำทั้งคู่ (ระดับ Warm-up)</h2>
+    <p class="lede">ฝึกทำแบบเต็มทุกขั้นตอน พร้อมแสดงการแก้สมการเลขชี้กำลัง $A, B, C$</p>
   </div>
 
   <section>
     <h2>โจทย์</h2>
     <blockquote class="th">
-      <span class="tag">แบบฝึกหัดที่ 1</span>
-      การทดสอบเครื่องสูบน้ำ Prototype ซึ่งออกแบบมาให้สูบน้ำด้วยอัตราการไหล $2.0\ \text{m}^3/\text{s}$ เส้นผ่านศูนย์กลางใบพัด $50\ \text{cm}$ และสร้างความดันเพิ่มขึ้น $500\ \text{kPa}$ วิศวกรต้องการสร้างแบบจำลอง (Model) ที่มีขนาดเส้นผ่านศูนย์กลางใบพัด $10\ \text{cm}$ โดยใช้น้ำในการทดสอบเช่นเดียวกัน จงหาอัตราการไหล ($Q_m$) และความดันที่เพิ่มขึ้น ($\Delta P_m$) ในแบบจำลอง
+      <span class="tag">แบบฝึกหัดที่ 1 (ระดับอุ่นเครื่อง)</span>
+      การทดสอบเครื่องสูบน้ำ Prototype ซึ่งออกแบบมาให้สูบน้ำด้วยอัตราการไหล $2.0\ \text{m}^3/\text{s}$ เส้นผ่านศูนย์กลางใบพัด $50\ \text{cm}$ และสร้างความดันเพิ่มขึ้น $500\ \text{kPa}$ วิศวกรต้องการสร้างแบบจำลอง (Model) ที่มีขนาดเส้นผ่านศูนย์กลางใบพัด $10\ \text{cm}$ โดยใช้น้ำในการทดสอบเช่นเดียวกัน จงหาอัตราการไหล ($Q_m$) และความดันที่เพิ่มขึ้น ($\Delta P_m$) ในแบบจำลอง โดยใช้วิธี Dimensional Analysis
     </blockquote>
+
+    <div class="tscroll">
+    <table class="dims">
+      <thead><tr><th>พารามิเตอร์</th><th>แบบจำลอง (Model)</th><th>Prototype</th><th>หมายเหตุ</th></tr></thead>
+      <tbody>
+        <tr><td class="q">$D$</td><td>$D_m = 10\ \text{cm} = 0.10\ \text{m}$</td><td>$D_p = 50\ \text{cm} = 0.50\ \text{m}$</td><td>สเกล $D_p / D_m = 5$</td></tr>
+        <tr><td class="q">$Q$</td><td>$Q_m = ?$</td><td>$Q_p = 2.0\ \text{m}^3/\text{s}$</td><td>หาจาก $\Pi_2$</td></tr>
+        <tr><td class="q">$\Delta P$</td><td>$\Delta P_m = ?$</td><td>$\Delta P_p = 500\ \text{kPa}$</td><td>หาจาก $\Pi_1$</td></tr>
+        <tr><td class="q">ของไหล</td><td>น้ำ ($\rho_m = \rho_p$)</td><td>น้ำ ($\mu_m = \mu_p$)</td><td>ตัดทอนกันได้</td></tr>
+      </tbody>
+    </table>
+    </div>
 
     <div class="practice-card">
       <span class="practice-badge">ทดสอบคำนวณด้วยตนเอง</span>
@@ -285,27 +389,70 @@
         <button type="button" class="toggle-btn" onclick="checkP1()">ตรวจคำตอบ</button>
         <span id="p1-res" class="check-res"></span>
       </div>
-      <button type="button" class="toggle-btn" onclick="toggleDetails('sol1')">ดูวิธีทำอย่างละเอียด 4 ขั้นตอน</button>
+      <button type="button" class="toggle-btn" onclick="toggleDetails('sol1')">ดูวิธีทำอย่างละเอียด 6 ขั้นตอนตามเกณฑ์อาจารย์</button>
     </div>
 
     <div id="sol1" style="display:none; margin-top:1.5rem;">
+      <div class="exam-box">
+        <span class="tag">เกณฑ์การให้คะแนนข้อสอบ</span>
+        แสดงครบทุกขั้นตอน: นับตัวแปร $\rightarrow$ หามิติ $P, \mu$ $\rightarrow$ ตั้งสมการ $\Pi$ $\rightarrow$ แก้ระบบสมการ $M,L,T$ $\rightarrow$ แทนค่าและตัดหน่วย
+      </div>
       <ol class="steps">
         <li>
-          <h3>อัตราส่วนขนาดเส้นผ่านศูนย์กลาง</h3>
-          $$\frac{D_m}{D_p} = \frac{10\ \text{cm}}{50\ \text{cm}} = \frac{0.10\ \text{m}}{0.50\ \text{m}} = \frac{1}{5} = 0.20$$
+          <h3>เขียนฟังก์ชัน แล้วนับ $k$ และ $r$</h3>
+          $$\Delta P = f(Q,\ D,\ \rho,\ \mu)$$
+          $$k = 5\ (\Delta P, Q, D, \rho, \mu),\qquad r = 3\ (M, L, T)\qquad \implies \text{จำนวน }\Pi = 5 - 3 = 2$$
         </li>
+
         <li>
-          <h3>หา $Q_m$ จาก $\Pi_2 = \dfrac{\rho Q}{D \mu}$</h3>
-          $$Q_m = \left(\frac{D_m}{D_p}\right) Q_p = (0.20)(2.0\ \text{m}^3/\text{s}) = \mathbf{0.40\ \text{m}^3/\text{s}}$$
+          <h3>แสดงมิติของตัวแปรทั้งหมดพร้อมที่มา</h3>
+          $$P = \frac{F}{A} = \frac{M(L/T^2)}{L^2} = [ML^{-1}T^{-2}],\qquad \mu = \frac{\tau}{du/dy} = \frac{ML^{-1}T^{-2}}{(L/T)/L} = [ML^{-1}T^{-1}]$$
+          $$\Delta P = [ML^{-1}T^{-2}],\quad Q = [L^3 T^{-1}],\quad D = [L],\quad \rho = [ML^{-3}],\quad \mu = [ML^{-1}T^{-1}]$$
         </li>
+
         <li>
-          <h3>หา $\Delta P_m$ จาก $\Pi_1 = \dfrac{D^2 \rho \Delta P}{\mu^2}$</h3>
-          $$\Delta P_m = \left(\frac{D_p}{D_m}\right)^2 \Delta P_p = (5)^2 \times (500\ \text{kPa}) = 25 \times 500 = \mathbf{12,500\ \text{kPa}} = \mathbf{12.50\ \text{MPa}}$$
+          <h3>เลือกตัวแปรซ้ำ $(D, \rho, \mu)$</h3>
+          $$\text{ตัวแปรซ้ำ: } D,\ \rho,\ \mu \qquad\qquad \text{ตัวแปรไม่ซ้ำ: } \Delta P,\ Q$$
+        </li>
+
+        <li>
+          <h3>แก้หา $\Pi_1$ ด้วยระบบสมการเลขชี้กำลัง</h3>
+          $$\Pi_1 = D^A \rho^B \mu^C \Delta P \implies M^0 L^0 T^0 = [L]^A [ML^{-3}]^B [ML^{-1}T^{-1}]^C [ML^{-1}T^{-2}]$$
+          $$M^0 L^0 T^0 = M^{\,B+C+1}\;L^{\,A-3B-C-1}\;T^{\,-C-2}$$
+          $$\begin{aligned}
+          T:&\quad -C - 2 = 0 \implies C = -2 \\
+          M:&\quad B + C + 1 = 0 \implies B + (-2) + 1 = 0 \implies B = 1 \\
+          L:&\quad A - 3B - C - 1 = 0 \implies A - 3(1) - (-2) - 1 = 0 \implies A = 2
+          \end{aligned}$$
+          $$\Pi_1 = D^2 \rho^1 \mu^{-2} \Delta P = \frac{D^2 \rho\,\Delta P}{\mu^2}$$
+        </li>
+
+        <li>
+          <h3>แก้หา $\Pi_2$ ด้วยระบบสมการเลขชี้กำลัง</h3>
+          $$\Pi_2 = D^A \rho^B \mu^C Q \implies M^0 L^0 T^0 = [L]^A [ML^{-3}]^B [ML^{-1}T^{-1}]^C [L^3 T^{-1}]$$
+          $$M^0 L^0 T^0 = M^{\,B+C}\;L^{\,A-3B-C+3}\;T^{\,-C-1}$$
+          $$\begin{aligned}
+          T:&\quad -C - 1 = 0 \implies C = -1 \\
+          M:&\quad B + C = 0 \implies B + (-1) = 0 \implies B = 1 \\
+          L:&\quad A - 3B - C + 3 = 0 \implies A - 3(1) - (-1) + 3 = 0 \implies A = -1
+          \end{aligned}$$
+          $$\Pi_2 = D^{-1} \rho^1 \mu^{-1} Q = \frac{\rho\,Q}{D\,\mu}$$
+        </li>
+
+        <li>
+          <h3>จับคู่แบบจำลองกับ Prototype (ของไหลคือน้ำทั้งคู่)</h3>
+          <p class="sub"><b>1) หาอัตราการไหล $Q_m$ จาก $\Pi_2$:</b></p>
+          $$\left[\frac{\rho Q}{D \mu}\right]_m = \left[\frac{\rho Q}{D \mu}\right]_p \implies \frac{Q_m}{D_m} = \frac{Q_p}{D_p}$$
+          $$Q_m = \left(\frac{D_m}{D_p}\right) Q_p = \left(\frac{0.10\ \text{m}}{0.50\ \text{m}}\right)(2.0\ \text{m}^3/\text{s}) = \left(\frac{1}{5}\right)(2.0) = \mathbf{0.40\ \text{m}^3/\text{s}}$$
+
+          <p class="sub"><b>2) หาความดันเพิ่มขึ้น $\Delta P_m$ จาก $\Pi_1$:</b></p>
+          $$\left[\frac{D^2 \rho\,\Delta P}{\mu^2}\right]_m = \left[\frac{D^2 \rho\,\Delta P}{\mu^2}\right]_p \implies D_m^2\,\Delta P_m = D_p^2\,\Delta P_p$$
+          $$\Delta P_m = \left(\frac{D_p}{D_m}\right)^2 \Delta P_p = \left(\frac{0.50\ \text{m}}{0.10\ \text{m}}\right)^2 (500\ \text{kPa}) = (5)^2 \times 500 = 25 \times 500 = \mathbf{12,500\ \text{kPa}} = \mathbf{12.50\ \text{MPa}}$$
         </li>
       </ol>
       <div class="final">
         <div><p class="lbl">อัตราการไหล $Q_m$</p>$$0.40\ \text{m}^3/\text{s}$$</div>
-        <div><p class="lbl">ความดัน $\Delta P_m$</p>$$12,500\ \text{kPa} = 12.5\ \text{MPa}$$</div>
+        <div><p class="lbl">ความดัน $\Delta P_m$</p>$$12,500\ \text{kPa} = 12.50\ \text{MPa}$$</div>
       </div>
     </div>
   </section>
@@ -315,7 +462,7 @@
   </div>
 </article>
 
-<!-- ========================= PANEL 4: ข้อสอบเสมือน 2 ========================= -->
+<!-- ========================= PANEL 4: แบบฝึก 2 ========================= -->
 <article class="panel" id="p2-midterm">
   <div class="parthead">
     <h2 class="part-title">4. ข้อสอบเสมือน 2: ทิศทางย้อนกลับ Lab $\rightarrow$ Prototype (ระดับ Midterm)</h2>
@@ -325,9 +472,21 @@
   <section>
     <h2>โจทย์</h2>
     <blockquote class="th">
-      <span class="tag">แบบฝึกหัดที่ 2</span>
+      <span class="tag">แบบฝึกหัดที่ 2 (ข้อสอบสไตล์ทำนายผล)</span>
       ในห้องปฏิบัติการ วิศวกรทำการทดสอบแบบจำลองเครื่องสูบน้ำขนาดเล็กที่มีเส้นผ่านศูนย์กลางใบพัด $D_m = 12\ \text{cm}$ โดยใช้น้ำในการทดสอบ วัดอัตราการไหลได้ $Q_m = 0.45\ \text{m}^3/\text{s}$ และความดันเพิ่มขึ้น $\Delta P_m = 6,400\ \text{kPa}$ จงทำนายอัตราการไหล ($Q_p$) และความดันที่เพิ่มขึ้น ($\Delta P_p$) ของเครื่องสูบน้ำ Prototype ของจริงที่มีขนาดเส้นผ่านศูนย์กลางใบพัด $D_p = 48\ \text{cm}$ เมื่อใช้งานกับน้ำเช่นเดียวกัน
     </blockquote>
+
+    <div class="tscroll">
+    <table class="dims">
+      <thead><tr><th>พารามิเตอร์</th><th>แบบจำลอง (วัดได้ใน Lab)</th><th>Prototype ของจริง (ต้องการทำนาย)</th><th>หมายเหตุ</th></tr></thead>
+      <tbody>
+        <tr><td class="q">$D$</td><td>$D_m = 12\ \text{cm} = 0.12\ \text{m}$</td><td>$D_p = 48\ \text{cm} = 0.48\ \text{m}$</td><td>ของจริงใหญ่กว่า $4$ เท่า</td></tr>
+        <tr><td class="q">$Q$</td><td>$Q_m = 0.45\ \text{m}^3/\text{s}$</td><td>$Q_p = ?$</td><td>หาจาก $\Pi_2$</td></tr>
+        <tr><td class="q">$\Delta P$</td><td>$\Delta P_m = 6,400\ \text{kPa}$</td><td>$\Delta P_p = ?$</td><td>หาจาก $\Pi_1$</td></tr>
+        <tr><td class="q">ของไหล</td><td>น้ำ ($\rho_m = \rho_p$)</td><td>น้ำ ($\mu_m = \mu_p$)</td><td>ตัดทอนกันได้</td></tr>
+      </tbody>
+    </table>
+    </div>
 
     <div class="practice-card">
       <span class="practice-badge">ทดสอบคำนวณด้วยตนเอง</span>
@@ -339,27 +498,50 @@
         <button type="button" class="toggle-btn" onclick="checkP2()">ตรวจคำตอบ</button>
         <span id="p2-res" class="check-res"></span>
       </div>
-      <button type="button" class="toggle-btn" onclick="toggleDetails('sol2')">ดูวิธีทำอย่างละเอียด 4 ขั้นตอน</button>
+      <button type="button" class="toggle-btn" onclick="toggleDetails('sol2')">ดูวิธีทำอย่างละเอียด 6 ขั้นตอนตามเกณฑ์อาจารย์</button>
     </div>
 
     <div id="sol2" style="display:none; margin-top:1.5rem;">
+      <div class="exam-box">
+        <span class="tag">จุดที่ข้อสอบชอบดัก</span>
+        โจทย์ข้อนี้ถามหา Prototype ($p$) ไม่ใช่ Model ($m$) ต้องระวังการย้ายข้างสมการเศษส่วนให้ถูกต้อง!
+      </div>
       <ol class="steps">
         <li>
-          <h3>อัตราส่วนขยายขนาด (Scale Ratio)</h3>
-          $$\lambda = \frac{D_p}{D_m} = \frac{48\ \text{cm}}{12\ \text{cm}} = \frac{0.48\ \text{m}}{0.12\ \text{m}} = 4.0$$
+          <h3>เขียนฟังก์ชัน และนับ $k, r$</h3>
+          $$\Delta P = f(Q,\ D,\ \rho,\ \mu) \implies k = 5,\ r = 3 \implies \text{จำนวน }\Pi = 5 - 3 = 2$$
         </li>
+
         <li>
-          <h3>ทำนายอัตราการไหล $Q_p$</h3>
-          $$Q_p = \left(\frac{D_p}{D_m}\right) Q_m = (4.0)(0.45\ \text{m}^3/\text{s}) = \mathbf{1.80\ \text{m}^3/\text{s}}$$
+          <h3>หามิติของตัวแปรทั้งหมด</h3>
+          $$P = [ML^{-1}T^{-2}],\quad \mu = [ML^{-1}T^{-1}],\quad Q = [L^3 T^{-1}],\quad D = [L],\quad \rho = [ML^{-3}]$$
         </li>
+
         <li>
-          <h3>ทำนายความดันเพิ่มขึ้น $\Delta P_p$</h3>
-          $$\Delta P_p = \left(\frac{D_m}{D_p}\right)^2 \Delta P_m = \left(\frac{1}{4.0}\right)^2 (6,400\ \text{kPa}) = \frac{6,400}{16} = \mathbf{400\ \text{kPa}}$$
+          <h3>เลือกตัวแปรซ้ำ $(D, \rho, \mu)$ และแก้ระบบสมการหา $\Pi$</h3>
+          $$\text{ตัวแปรซ้ำ: } D,\ \rho,\ \mu \implies \Pi_1 = \frac{D^2 \rho\,\Delta P}{\mu^2},\qquad \Pi_2 = \frac{\rho\,Q}{D\,\mu}$$
+        </li>
+
+        <li>
+          <h3>ทำนายอัตราการไหล $Q_p$ ของ Prototype จาก $\Pi_2$</h3>
+          $$\left[\frac{\rho Q}{D \mu}\right]_p = \left[\frac{\rho Q}{D \mu}\right]_m \implies \frac{Q_p}{D_p} = \frac{Q_m}{D_m}$$
+          $$Q_p = \left(\frac{D_p}{D_m}\right) Q_m = \left(\frac{0.48\ \text{m}}{0.12\ \text{m}}\right)(0.45\ \text{m}^3/\text{s}) = (4.0)(0.45) = \mathbf{1.80\ \text{m}^3/\text{s}}$$
+        </li>
+
+        <li>
+          <h3>ทำนายความดันเพิ่มขึ้น $\Delta P_p$ ของ Prototype จาก $\Pi_1$</h3>
+          $$\left[\frac{D^2 \rho\,\Delta P}{\mu^2}\right]_p = \left[\frac{D^2 \rho\,\Delta P}{\mu^2}\right]_m \implies D_p^2\,\Delta P_p = D_m^2\,\Delta P_m$$
+          $$\Delta P_p = \left(\frac{D_m}{D_p}\right)^2 \Delta P_m = \left(\frac{0.12\ \text{m}}{0.48\ \text{m}}\right)^2 (6,400\ \text{kPa}) = \left(\frac{1}{4}\right)^2 (6,400) = \frac{6,400}{16} = \mathbf{400\ \text{kPa}}$$
+        </li>
+
+        <li>
+          <h3>ตรวจสอบความสอดคล้องทางกายภาพ</h3>
+          <p class="muted">เครื่องสูบน้ำจริงมีขนาดใหญ่กว่าแบบจำลอง $4$ เท่า อัตราการไหลจะเพิ่มขึ้น $4$ เท่า ($1.80\ \text{m}^3/\text{s}$) แต่ความดันจะลดลงเหลือ $1/16$ ($400\ \text{kPa}$) สอดคล้องกับพฤติกรรมจริงเมื่อรักษา $Re$ ให้คงที่</p>
         </li>
       </ol>
       <div class="final">
-        <div><p class="lbl">อัตราการไหล $Q_p$</p>$$1.80\ \text{m}^3/\text{s}$$</div>
-        <div><p class="lbl">ความดัน $\Delta P_p$</p>$$400\ \text{kPa}$$</div>
+        <div><p class="lbl">อัตราการไหล Prototype $Q_p$</p>$$1.80\ \text{m}^3/\text{s}$$</div>
+        <div><p class="lbl">ความดัน Prototype $\Delta P_p$</p>$$400\ \text{kPa}$$</div>
       </div>
     </div>
   </section>
@@ -369,19 +551,32 @@
   </div>
 </article>
 
-<!-- ========================= PANEL 5: ข้อสอบเสมือน 3 ========================= -->
+<!-- ========================= PANEL 5: แบบฝึก 3 ========================= -->
 <article class="panel" id="p3-mastery">
   <div class="parthead">
     <h2 class="part-title">5. ข้อสอบเสมือน 3: ของไหลต่างชนิด น้ำมัน $\rightarrow$ น้ำ (ระดับ Mastery)</h2>
-    <p class="lede">ระดับท้าทายสูงสุด: เมื่อของไหลของแบบจำลองไม่ใช่ของไหลชนิดเดียวกับ Prototype</p>
+    <p class="lede">ระดับท้าทายสูงสุด: เมื่อของไหลของแบบจำลองไม่ใช่ชนิดเดียวกับ Prototype ($\rho, \mu$ ไม่ตัดกัน)</p>
   </div>
 
   <section>
     <h2>โจทย์</h2>
     <blockquote class="th">
-      <span class="tag">แบบฝึกหัดที่ 3</span>
-      การทดสอบแบบจำลองเครื่องสูบน้ำขนาดใบพัด $D_m = 6\ \text{cm}$ โดยใช้สารหล่อลื่นพิเศษ ($\rho_m = 800\ \text{kg/m}^3, \mu_m = 1.20 \times 10^{-3}\ \text{Pa}\cdot\text{s}$) เพื่อจำลองเครื่องสูบน้ำจริง (Prototype) สูบน้ำ ($\rho_p = 1,000\ \text{kg/m}^3, \mu_p = 1.00 \times 10^{-3}\ \text{Pa}\cdot\text{s}$) ขนาด $D_p = 30\ \text{cm}$ ทำงานที่ $Q_p = 1.25\ \text{m}^3/\text{s}$ และ $\Delta P_p = 360\ \text{kPa}$ จงหาอัตราการไหล ($Q_m$) และความดันที่เพิ่มขึ้น ($\Delta P_m$) ในแบบจำลอง
+      <span class="tag">แบบฝึกหัดที่ 3 (ข้อสอบประยุกต์ระดับสูง)</span>
+      การทดสอบแบบจำลองเครื่องสูบน้ำขนาดใบพัด $D_m = 6\ \text{cm}$ ในอุโมงค์ของไหล โดยใช้สารหล่อลื่นพิเศษ ($\rho_m = 800\ \text{kg/m}^3, \mu_m = 1.20 \times 10^{-3}\ \text{Pa}\cdot\text{s}$) เพื่อจำลองการทำงานของเครื่องสูบน้ำจริง (Prototype) สูบน้ำ ($\rho_p = 1,000\ \text{kg/m}^3, \mu_p = 1.00 \times 10^{-3}\ \text{Pa}\cdot\text{s}$) ขนาด $D_p = 30\ \text{cm}$ โดย Prototype มีอัตราการไหล $Q_p = 1.25\ \text{m}^3/\text{s}$ และความดันเพิ่มขึ้น $\Delta P_p = 360\ \text{kPa}$ จงหาอัตราการไหล ($Q_m$) และความดันที่เพิ่มขึ้น ($\Delta P_m$) ที่ต้องตั้งค่าในแบบจำลอง
     </blockquote>
+
+    <div class="tscroll">
+    <table class="dims">
+      <thead><tr><th>ตัวแปร</th><th>แบบจำลอง (น้ำมันทดสอบ)</th><th>Prototype (น้ำ)</th><th>อัตราส่วน</th></tr></thead>
+      <tbody>
+        <tr><td class="q">$D$</td><td>$D_m = 6\ \text{cm} = 0.06\ \text{m}$</td><td>$D_p = 30\ \text{cm} = 0.30\ \text{m}$</td><td>$D_m / D_p = 0.20$</td></tr>
+        <tr><td class="q">$\rho$</td><td>$\rho_m = 800\ \text{kg/m}^3$</td><td>$\rho_p = 1,000\ \text{kg/m}^3$</td><td>$\rho_p / \rho_m = 1.25$</td></tr>
+        <tr><td class="q">$\mu$</td><td>$\mu_m = 1.20 \times 10^{-3}\ \text{Pa}\cdot\text{s}$</td><td>$\mu_p = 1.00 \times 10^{-3}\ \text{Pa}\cdot\text{s}$</td><td>$\mu_m / \mu_p = 1.20$</td></tr>
+        <tr><td class="q">$Q$</td><td>$Q_m = ?$</td><td>$Q_p = 1.25\ \text{m}^3/\text{s}$</td><td>หาจาก $\Pi_2$</td></tr>
+        <tr><td class="q">$\Delta P$</td><td>$\Delta P_m = ?$</td><td>$\Delta P_p = 360\ \text{kPa}$</td><td>หาจาก $\Pi_1$</td></tr>
+      </tbody>
+    </table>
+    </div>
 
     <div class="practice-card">
       <span class="practice-badge">ทดสอบคำนวณด้วยตนเอง</span>
@@ -393,20 +588,50 @@
         <button type="button" class="toggle-btn" onclick="checkP3()">ตรวจคำตอบ</button>
         <span id="p3-res" class="check-res"></span>
       </div>
-      <button type="button" class="toggle-btn" onclick="toggleDetails('sol3')">ดูวิธีทำอย่างละเอียด 4 ขั้นตอน</button>
+      <button type="button" class="toggle-btn" onclick="toggleDetails('sol3')">ดูวิธีทำอย่างละเอียด 6 ขั้นตอนตามเกณฑ์อาจารย์</button>
     </div>
 
     <div id="sol3" style="display:none; margin-top:1.5rem;">
+      <div class="exam-box">
+        <span class="tag">กฎเหล็กข้อสอบกรณีของไหลต่างชนิด</span>
+        $\rho$ และ $\mu$ ห้ามตัดทิ้งเด็ดขาด! ต้องเขียนแทนค่าครบทุกตัวแปร และตัดทอนเลขชี้กำลังอย่างรอบคอบ
+      </div>
       <ol class="steps">
         <li>
-          <h3>หา $Q_m$ (ค่า $\rho$ และ $\mu$ ไม่ตัดกัน)</h3>
-          $$Q_m = Q_p \left(\frac{D_m}{D_p}\right) \left(\frac{\rho_p}{\rho_m}\right) \left(\frac{\mu_m}{\mu_p}\right)$$
-          $$Q_m = (1.25) \times \left(\frac{0.06}{0.30}\right) \times \left(\frac{1,000}{800}\right) \times \left(\frac{1.20 \times 10^{-3}}{1.00 \times 10^{-3}}\right) = \mathbf{0.375\ \text{m}^3/\text{s}}$$
+          <h3>เขียนฟังก์ชัน และนับ $k, r$</h3>
+          $$\Delta P = f(Q,\ D,\ \rho,\ \mu) \implies k = 5,\ r = 3 \implies \text{จำนวน }\Pi = 5 - 3 = 2$$
         </li>
+
         <li>
-          <h3>หา $\Delta P_m$</h3>
-          $$\Delta P_m = \Delta P_p \left(\frac{D_p}{D_m}\right)^2 \left(\frac{\rho_p}{\rho_m}\right) \left(\frac{\mu_m}{\mu_p}\right)^2$$
-          $$\Delta P_m = (360) \times (5)^2 \times (1.25) \times (1.20)^2 = 360 \times 25 \times 1.25 \times 1.44 = \mathbf{16,200\ \text{kPa}} = \mathbf{16.20\ \text{MPa}}$$
+          <h3>หามิติของทุกตัวแปร</h3>
+          $$P = [ML^{-1}T^{-2}],\quad \mu = [ML^{-1}T^{-1}],\quad Q = [L^3 T^{-1}],\quad D = [L],\quad \rho = [ML^{-3}]$$
+        </li>
+
+        <li>
+          <h3>เลือกตัวแปรซ้ำ $(D, \rho, \mu)$ และกลุ่มไร้มิติ</h3>
+          $$\Pi_1 = \frac{D^2 \rho\,\Delta P}{\mu^2},\qquad \Pi_2 = \frac{\rho\,Q}{D\,\mu}$$
+        </li>
+
+        <li>
+          <h3>หา $Q_m$ จาก $\Pi_2$ (แทนค่าความหนาแน่นและความหนืดครบถ้วน)</h3>
+          $$\left[\frac{\rho Q}{D \mu}\right]_m = \left[\frac{\rho Q}{D \mu}\right]_p \implies Q_m = Q_p \left(\frac{D_m}{D_p}\right) \left(\frac{\rho_p}{\rho_m}\right) \left(\frac{\mu_m}{\mu_p}\right)$$
+          $$Q_m = (1.25\ \text{m}^3/\text{s}) \times \left(\frac{0.06\ \text{m}}{0.30\ \text{m}}\right) \times \left(\frac{1,000\ \text{kg/m}^3}{800\ \text{kg/m}^3}\right) \times \left(\frac{1.20 \times 10^{-3}\ \text{Pa}\cdot\text{s}}{1.00 \times 10^{-3}\ \text{Pa}\cdot\text{s}}\right)$$
+          $$Q_m = 1.25 \times (0.20) \times (1.25) \times (1.20) = 1.25 \times 0.30 = \mathbf{0.375\ \text{m}^3/\text{s}}$$
+        </li>
+
+        <li>
+          <h3>หา $\Delta P_m$ จาก $\Pi_1$ (แทนค่ายกกำลังสองอย่างรอบคอบ)</h3>
+          $$\left[\frac{D^2 \rho\,\Delta P}{\mu^2}\right]_m = \left[\frac{D^2 \rho\,\Delta P}{\mu^2}\right]_p \implies \Delta P_m = \Delta P_p \left(\frac{D_p}{D_m}\right)^2 \left(\frac{\rho_p}{\rho_m}\right) \left(\frac{\mu_m}{\mu_p}\right)^2$$
+          $$\Delta P_m = (360\ \text{kPa}) \times \left(\frac{0.30\ \text{m}}{0.06\ \text{m}}\right)^2 \times \left(\frac{1,000}{800}\right) \times \left(\frac{1.20 \times 10^{-3}}{1.00 \times 10^{-3}}\right)^2$$
+          $$\Delta P_m = 360 \times (5)^2 \times (1.25) \times (1.20)^2 = 360 \times (25) \times (1.25) \times (1.44)$$
+          $$\Delta P_m = 360 \times 45 = \mathbf{16,200\ \text{kPa}} = \mathbf{16.20\ \text{MPa}}$$
+        </li>
+
+        <li>
+          <h3>ตรวจสอบความสอดคล้องทางพลศาสตร์ด้วย Reynolds Number ($Re$)</h3>
+          $$Re_p = \frac{4 \rho_p Q_p}{\pi D_p \mu_p} = \frac{4(1,000)(1.25)}{\pi(0.30)(1.00 \times 10^{-3})} \approx 5.305 \times 10^6$$
+          $$Re_m = \frac{4 \rho_m Q_m}{\pi D_m \mu_m} = \frac{4(800)(0.375)}{\pi(0.06)(1.20 \times 10^{-3})} \approx 5.305 \times 10^6 \quad \checkmark$$
+          <p class="muted">ค่า $Re_m = Re_p$ เท่ากัน แสดงว่าการไหลมีความคล้ายคลึงทางพลศาสตร์ (Dynamic Similitude) สมบูรณ์ 100%</p>
         </li>
       </ol>
       <div class="final">
@@ -424,12 +649,12 @@
 <!-- ========================= PANEL 6: จุดดักคะแนน ========================= -->
 <article class="panel" id="traps">
   <div class="parthead">
-    <h2 class="part-title">6. สรุปจุดดักคะแนนสอบ & เคล็ดลับจาก Inspector</h2>
-    <p class="lede">3 สิ่งที่นักศึกษาวิศวกรรมมักทำพลาดในห้องสอบ และสูตรโกงตรวจคำตอบใน 10 วินาที</p>
+    <h2 class="part-title">6. สรุปจุดดักคะแนนสอบ & ระเบียบการเขียนตอบ</h2>
+    <p class="lede">เช็คลิสต์ตรวจความถูกต้องก่อนส่งกระดาษคำตอบวิชา Fluid Mechanics</p>
   </div>
 
   <section>
-    <h2>3 ข้อผิดพลาดยอดฮิต</h2>
+    <h2>3 จุดที่คนมักถูกตัดคะแนน</h2>
     <ul class="tips">
       <li class="warn"><span class="lead">1. ทิศทางของอัตราส่วนขนาด $D$:</span> สำหรับ $Q$ อัตราส่วนคือ $(D_m/D_p)^1$ (แบบจำลองเล็กกว่า $Q$ ต้องน้อยกว่า) แต่สำหรับ $\Delta P$ อัตราส่วนคือ $(D_p/D_m)^2$ (แบบจำลองเล็กกว่า ความดันกลับพุ่งสูงขึ้นเป็นกำลังสอง) ให้ตั้งสมการและย้ายข้างเสมอ อย่าเดาในใจ</li>
       <li class="warn"><span class="lead">2. ที่มาของมิติ $P$ และ $\mu$:</span> ในกระดาษคำตอบ ขั้นตอนที่ 2 ต้องแสดงที่มา $P = F/A = ML^{-1}T^{-2}$ และ $\tau = \mu(du/dy) \implies \mu = ML^{-1}T^{-1}$ เสมอ เพราะอาจารย์มีช่องให้คะแนนเฉพาะตรงนี้</li>
@@ -451,7 +676,7 @@
 (function(){
   var panels=[].slice.call(document.querySelectorAll('article.panel'));
   var tabs=[].slice.call(document.querySelectorAll('nav.tabs a'));
-  var titles=['สรุปทฤษฎี','ข้อ 7 ต้นฉบับ','แบบฝึก 1 (Warm-up)','แบบฝึก 2 (Midterm)','แบบฝึก 3 (Mastery)','จุดดักคะแนน'];
+  var titles=['ขั้นตอนตรวจข้อสอบ','ข้อ 7 ต้นฉบับ','แบบฝึก 1 (Warm-up)','แบบฝึก 2 (Midterm)','แบบฝึก 3 (Mastery)','จุดดักคะแนน'];
 
   function show(id){
     var idx=0; panels.forEach(function(p,i){ if(p.id===id) idx=i; });
